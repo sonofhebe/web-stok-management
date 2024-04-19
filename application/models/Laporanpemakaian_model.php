@@ -1,3 +1,4 @@
+
 <?php
 class laporanpemakaian_model extends CI_Model
 {

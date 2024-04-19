@@ -1,3 +1,4 @@
+
 <?php
 class User extends CI_Controller
 {
@@ -52,14 +53,13 @@ class User extends CI_Controller
         if ($this->User_model->cekuser($username)) {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Gagal, username sudah digunakan !</div>');
             redirect('data-user', 'refresh');
-        } else if ($role==1 && $role!=$dapur) {
+        } else if ($role == 1 && $role != $dapur) {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">PENEMPATAN TIDAK COCOK !</div>');
             redirect('data-user', 'refresh');
-        } else if ($role==2 && $dapur==1){
+        } else if ($role == 2 && $dapur == 1) {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">PENEMPATAN TIDAK COCOK !</div>');
             redirect('data-user', 'refresh');
-        } else
-            {
+        } else {
             if ($profile == null) {
                 $data = array(
                     'username'      => $username,
@@ -133,10 +133,10 @@ class User extends CI_Controller
         $nama_gambar = uniqid($acak_angka);
         //nama gamabr baru
         $nama_baru = 'Profile' . $nama_gambar . $d2 . '.' .  $extensi;
-        if ($role==1 && $role!=$dapur) {
+        if ($role == 1 && $role != $dapur) {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">PENEMPATAN TIDAK COCOK !</div>');
             redirect('data-user', 'refresh');
-        } else if ($role==2 && $dapur==1){
+        } else if ($role == 2 && $dapur == 1) {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">PENEMPATAN TIDAK COCOK !</div>');
             redirect('data-user', 'refresh');
         } else if ($profile == null) {
@@ -181,7 +181,6 @@ class User extends CI_Controller
                 redirect('data-user', 'refresh');
             }
         }
-    
     }
 
     public function hapus($id)

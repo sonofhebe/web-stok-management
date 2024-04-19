@@ -79,6 +79,7 @@
     </script>
     <script>
         function clearme() {
+
             <?php
             if (isset($_SESSION['message'])) :
                 unset($_SESSION['message']);

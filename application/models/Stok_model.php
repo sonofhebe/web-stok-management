@@ -1,3 +1,4 @@
+
 <?php
 class stok_model extends CI_Model
 {

@@ -34,27 +34,29 @@
                                       </tr>
                                   </thead>
                                   <tbody>
+
                                       <?php $n = 1;
                                         foreach ($data_user as $us) {
                                         ?>
                                           <tr>
-                                          <td><?= $n ?></td>
-                                            <td>
-                                                <img src="<?= base_url('./assets/profile/') . $us->profile ?>" alt="profiel-user" class="fotok">
-                                            </td>
-                                          <td><?= $us->username ?></td>
+                                              <td><?= $n ?></td>
+                                              <td>
+                                                  <img src="<?= base_url('./assets/profile/') . $us->profile ?>" alt="profiel-user" class="fotok">
+                                              </td>
+                                              <td><?= $us->username ?></td>
                                               <td><?= $us->nama ?></td>
                                               <td><?= $us->no_hp ?></td>
                                               <td><?= $us->alamat ?></td>
                                               <td>
-                                                  <?php if ($us->id_dapur == '1'){
-                                                    echo 'Muara 1 Prima' ;
-                                                  } else {
-                                                    foreach ($dapur as $dpr) { 
-                                                        if ($dpr->id_dapur == $us->id_dapur)
-                                                    echo $dpr->nama_dapur ;
-                                                    } 
-                                                }?>
+
+                                                  <?php if ($us->id_dapur == '1') {
+                                                        echo 'Muara 1 Prima';
+                                                    } else {
+                                                        foreach ($dapur as $dpr) {
+                                                            if ($dpr->id_dapur == $us->id_dapur)
+                                                                echo $dpr->nama_dapur;
+                                                        }
+                                                    } ?>
                                               </td>
                                               <td>
                                                   <div class="btn-group">
@@ -74,26 +76,26 @@
                                                   </div>
                                               </td>
 
-                                                  <!-- Modal -->
-                                                  <div class="modal fade" id="hapus<?= $us->id_user ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                      <div class="modal-dialog">
-                                                          <div class="modal-content">
-                                                              <div class="modal-header bg-danger">
-                                                                  <h5 class="modal-title text-white" id="exampleModalLabel">Konfirmasi Hapus</h5>
+                                              <!-- Modal -->
+                                              <div class="modal fade" id="hapus<?= $us->id_user ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                  <div class="modal-dialog">
+                                                      <div class="modal-content">
+                                                          <div class="modal-header bg-danger">
+                                                              <h5 class="modal-title text-white" id="exampleModalLabel">Konfirmasi Hapus</h5>
+                                                          </div>
+                                                          <div class="modal-body">
+                                                              <div class="alert alert-warning text-center">
+                                                                  <p><b>Apakah anda yakin akan menghapus data ini ?</b></p>
+                                                                  <b><?= $us->nama ?></b>
                                                               </div>
-                                                              <div class="modal-body">
-                                                                  <div class="alert alert-warning text-center">
-                                                                      <p><b>Apakah anda yakin akan menghapus data ini ?</b></p>
-                                                                      <b><?= $us->nama ?></b>
-                                                                  </div>
-                                                              </div>
-                                                              <div class="modal-footer">
-                                                                  <button type="button" class="btn btn-warning btn-sm" data-dismiss="modal">Close</button>
-                                                                  <a href="<?= base_url('hapus-user/') . $us->id_user ?>" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> Hapus Data</a>
-                                                              </div>
+                                                          </div>
+                                                          <div class="modal-footer">
+                                                              <button type="button" class="btn btn-warning btn-sm" data-dismiss="modal">Close</button>
+                                                              <a href="<?= base_url('hapus-user/') . $us->id_user ?>" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> Hapus Data</a>
                                                           </div>
                                                       </div>
                                                   </div>
+                                              </div>
 
 
                                               </td>
@@ -165,7 +167,7 @@
                                                                                       <br>
                                                                                       <img src="<?= base_url('./assets/profile/') . $us->profile ?>" alt="profiel-user" class="fotos">
                                                                                       <input type="file" name="profile" class="form-control">
-                                                                                      <input type="hidden" name="profileLama" value="<?= $us->profile ?>" class="form-control" >
+                                                                                      <input type="hidden" name="profileLama" value="<?= $us->profile ?>" class="form-control">
                                                                                   </div>
                                                                                   <div class="form-group">
                                                                                       <label for="">Jabatan</label>
@@ -180,9 +182,11 @@
                                                                                       <select name="id_dapur" id="" class="form-control" required>
                                                                                           <option value="" disabled selected>-- PILIH PENEMPATAN --</option>
                                                                                           <option value="1" <?= $us->id_dapur == '1' ? 'selected' : '' ?>>Muara 1 Prima</option>
-                                                                                            <?php foreach ($dapur as $dpr) { ?>
-                                                                                            <option value="<?= $dpr->id_dapur ?>" <?= $us->id_dapur == $dpr->id_dapur ? 'selected' : '' ?>><?= $dpr->nama_dapur ?></option>
-                                                                                            <?php } ?>
+
+                                                                                          <?php foreach ($dapur as $dpr) { ?>
+                                                                                              <option value="<?= $dpr->id_dapur ?>" <?= $us->id_dapur == $dpr->id_dapur ? 'selected' : '' ?>><?= $dpr->nama_dapur ?></option>
+
+                                                                                          <?php } ?>
                                                                                       </select>
                                                                                   </div>
                                                                               </div>
@@ -198,6 +202,7 @@
                                                   </div>
                                               </div>
                                           </tr>
+
                                       <?php $n++;
                                         } ?>
                                   </tbody>
@@ -264,16 +269,18 @@
                                                   <option value="2">Cabang</option>
                                               </select>
                                           </div>
-                                            <div class="form-group">
-                                                <label for="">Penempatan</label>
-                                                <select name="id_dapur" id="" class="form-control" required>
-                                                    <option value="" disabled selected>-- PILIH PENEMPATAN --</option>
-                                                    <option value="1">Muara 1 Prima</option>
-                                                    <?php foreach ($dapur as $dpr) { ?>
-                                                    <option value="<?= $dpr->id_dapur ?>"><?= $dpr->nama_dapur ?></option>
-                                                    <?php } ?>
-                                                </select>
-                                            </div>
+                                          <div class="form-group">
+                                              <label for="">Penempatan</label>
+                                              <select name="id_dapur" id="" class="form-control" required>
+                                                  <option value="" disabled selected>-- PILIH PENEMPATAN --</option>
+                                                  <option value="1">Muara 1 Prima</option>
+
+                                                  <?php foreach ($dapur as $dpr) { ?>
+                                                      <option value="<?= $dpr->id_dapur ?>"><?= $dpr->nama_dapur ?></option>
+
+                                                  <?php } ?>
+                                              </select>
+                                          </div>
                                       </div>
                                       <div class="form-group">
                                           <button class="btn btn-success btn-sm" type="submit">Simpan</button>

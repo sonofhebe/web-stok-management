@@ -1,3 +1,4 @@
+
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
@@ -32,19 +33,19 @@ class Welcome extends CI_Controller
 		$terlarisc = 0;
 		$terbahan = 0;
 		$terbahanc = 0;
-        $id_dapur = $this->session->userdata('id_dapur');
-		foreach ($this->Dashboard_model->terlaris() as $laris){
-			$terlaris = $laris->nama_produk;
+		$id_dapur = $this->session->userdata('id_dapur');
+		foreach ($this->Dashboard_model->terlaris() as $laris) {
+			$terlaris = $laris->nama;
 		}
-        foreach ($this->Dashboard_model->terbahan() as $laris){
-            $terbahan = $laris->nama_bahan;
-        }
-		foreach ($this->Dashboard_model->terlarisc($id_dapur) as $laris){
-			$terlarisc = $laris->nama_produk;
+		foreach ($this->Dashboard_model->terbahan() as $laris) {
+			$terbahan = $laris->nama_bahan;
 		}
-		foreach ($this->Dashboard_model->terbahanc($id_dapur) as $laris){
+		foreach ($this->Dashboard_model->terlarisc($id_dapur) as $laris) {
+			$terlarisc = $laris->nama;
+		}
+		foreach ($this->Dashboard_model->terbahanc($id_dapur) as $laris) {
 			$terbahanc = $laris->nama_bahan;
-		} 
+		}
 		if ($terlaris == 0) {
 			$terlaris = '';
 		} else if ($terlarisc == 0) {
@@ -77,7 +78,7 @@ class Welcome extends CI_Controller
 		$this->load->view('pages/dashboard.php', $data);
 		$this->load->view('template/footer.php');
 	}
-	
+
 	public function index2()
 	{
 		$data = array(

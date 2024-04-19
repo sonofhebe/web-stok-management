@@ -1,3 +1,4 @@
+
 <?php
 class takaran_model extends CI_Model
 {

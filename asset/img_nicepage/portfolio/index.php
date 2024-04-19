@@ -1,3 +1,4 @@
+
 <?php
-header ('Location:http://www.dicsr-qnt.com/');
+header('Location:http://www.dicsr-qnt.com/');
 ?>

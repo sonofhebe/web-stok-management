@@ -1,3 +1,4 @@
+
 <?php
 class dapur_model extends CI_Model
 {

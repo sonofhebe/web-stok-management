@@ -34,6 +34,7 @@
                                       </tr>
                                   </thead>
                                   <tbody>
+
                                       <?php $n = 1;
                                         foreach ($satuan as $data) { ?>
                                           <tr>
@@ -102,6 +103,7 @@
                                                   <small>Update : <?= $data->tgl_update == '0000-00-00 00:00:00' ? '-' : $data->tgl_update ?></small>
                                               </td>
                                           </tr>
+
                                       <?php $n++;
                                         } ?>
                                   </tbody>

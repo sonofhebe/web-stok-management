@@ -1,3 +1,4 @@
+
 <?php
 class pemakaian_bulanan extends CI_Controller
 {
@@ -15,10 +16,10 @@ class pemakaian_bulanan extends CI_Controller
         $id_kategori = $this->input->post('id_kategori');
         $id_dapur = $this->input->post('id_dapur');
         $dapur = $this->pemakaianbulanan_model->dapur($id_dapur);
-        if ($id_dapur==0) {
-        $nama_dapur = 'SEMUA DAPUR';
+        if ($id_dapur == 0) {
+            $nama_dapur = 'SEMUA DAPUR';
         } else {
-        $nama_dapur = $dapur->nama_dapur;
+            $nama_dapur = $dapur->nama_dapur;
         }
         $data = array(
             'title' => 'Cetak Laporan',
@@ -28,7 +29,7 @@ class pemakaian_bulanan extends CI_Controller
             'nama_dapur'        => $nama_dapur,
             'bahan'        => $this->pemakaianbulanan_model->bahan($id_kategori),
             'tanggal'        => $this->pemakaianbulanan_model->tanggal($bulan),
-            'pemakaian'        => $this->pemakaianbulanan_model->pemakaian($bulan,$id_kategori,$id_dapur)
+            'pemakaian'        => $this->pemakaianbulanan_model->pemakaian($bulan, $id_kategori, $id_dapur)
         );
 
         $this->load->view('template/header.php', $data);
@@ -43,10 +44,10 @@ class pemakaian_bulanan extends CI_Controller
         $id_kategori = $this->input->post('id_kategori');
         $id_dapur = $this->input->post('id_dapur');
         $dapur = $this->pemakaianbulanan_model->dapur($id_dapur);
-        if ($id_dapur==0) {
-        $nama_dapur = 'SEMUA DAPUR';
+        if ($id_dapur == 0) {
+            $nama_dapur = 'SEMUA DAPUR';
         } else {
-        $nama_dapur = $dapur->nama_dapur;
+            $nama_dapur = $dapur->nama_dapur;
         }
         $data = array(
             'title' => 'Cetak Laporan',
@@ -56,7 +57,7 @@ class pemakaian_bulanan extends CI_Controller
             'nama_dapur'        => $nama_dapur,
             'bahan'        => $this->pemakaianbulanan_model->bahan($id_kategori),
             'tanggal'        => $this->pemakaianbulanan_model->tanggal($bulan),
-            'pemakaian'        => $this->pemakaianbulanan_model->pemakaian($bulan,$id_kategori,$id_dapur)
+            'pemakaian'        => $this->pemakaianbulanan_model->pemakaian($bulan, $id_kategori, $id_dapur)
         );
         $this->load->view('pages/laporan/print/pemakaian_bulanan.php', $data);
     }

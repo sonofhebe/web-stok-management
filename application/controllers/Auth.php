@@ -1,3 +1,4 @@
+
 <?php
 class Auth extends CI_Controller
 {
@@ -58,20 +59,20 @@ class Auth extends CI_Controller
                         $this->session->set_userdata($session);
                         redirect('dashboard', 'refresh');
                     } else {
-                    $session = array(
-                        'id_user'   => $session_user->id_user,
-                        'username'  => $session_user->username,
-                        'nama'      => $session_user->nama,
-                        'profile'   => $session_user->profile,
-                        'role_id'   => $session_user->role_id,
-                        'id_dapur'  => $session_user->id_dapur,
-                        'nama_dapur'  => $session_user->nama_dapur,
-                        'is_login'  => 'login'
-                    );
-                    $this->session->set_userdata($session);
-                    redirect('dashboard', 'refresh');
-                }
-             } else {
+                        $session = array(
+                            'id_user'   => $session_user->id_user,
+                            'username'  => $session_user->username,
+                            'nama'      => $session_user->nama,
+                            'profile'   => $session_user->profile,
+                            'role_id'   => $session_user->role_id,
+                            'id_dapur'  => $session_user->id_dapur,
+                            'nama_dapur'  => $session_user->nama_dapur,
+                            'is_login'  => 'login'
+                        );
+                        $this->session->set_userdata($session);
+                        redirect('dashboard', 'refresh');
+                    }
+                } else {
                     $this->session->set_flashdata('message', '<div class="alert alert-info text-center" role="alert">Akun anda saat ini tidak aktif !</div>');
                     redirect('Login', 'refresh');
                 }

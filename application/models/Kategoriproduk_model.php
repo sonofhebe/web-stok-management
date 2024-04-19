@@ -1,3 +1,4 @@
+
 <?php
 
 class kategoriproduk_model extends CI_Model

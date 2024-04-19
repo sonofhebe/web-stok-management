@@ -1,3 +1,4 @@
+
 <?php
 /**
  * CodeIgniter
@@ -35,7 +36,7 @@
  * @since	Version 3.0.0
  * @filesource
  */
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  * Interbase/Firebird Forge Class
@@ -44,7 +45,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @author		EllisLab Dev Team
  * @link		https://codeigniter.com/user_guide/database/
  */
-class CI_DB_ibase_forge extends CI_DB_forge {
+class CI_DB_ibase_forge extends CI_DB_forge
+{
 
 	/**
 	 * CREATE TABLE IF statement
@@ -98,9 +100,9 @@ class CI_DB_ibase_forge extends CI_DB_forge {
 		// Firebird databases are flat files, so a path is required
 
 		// Hostname is needed for remote access
-		empty($this->db->hostname) OR $db_name = $this->hostname.':'.$db_name;
+		empty($this->db->hostname) or $db_name = $this->hostname . ':' . $db_name;
 
-		return parent::create_database('"'.$db_name.'"');
+		return parent::create_database('"' . $db_name . '"');
 	}
 
 	// --------------------------------------------------------------------
@@ -113,15 +115,11 @@ class CI_DB_ibase_forge extends CI_DB_forge {
 	 */
 	public function drop_database($db_name)
 	{
-		if ( ! ibase_drop_db($this->conn_id))
-		{
+		if (!ibase_drop_db($this->conn_id)) {
 			return ($this->db->db_debug) ? $this->db->display_error('db_unable_to_drop') : FALSE;
-		}
-		elseif ( ! empty($this->db->data_cache['db_names']))
-		{
+		} elseif (!empty($this->db->data_cache['db_names'])) {
 			$key = array_search(strtolower($this->db->database), array_map('strtolower', $this->db->data_cache['db_names']), TRUE);
-			if ($key !== FALSE)
-			{
+			if ($key !== FALSE) {
 				unset($this->db->data_cache['db_names'][$key]);
 			}
 		}
@@ -140,50 +138,43 @@ class CI_DB_ibase_forge extends CI_DB_forge {
 	 * @return	string|string[]
 	 */
 	protected function _alter_table($alter_type, $table, $field)
- 	{
-		if (in_array($alter_type, array('DROP', 'ADD'), TRUE))
-		{
+	{
+		if (in_array($alter_type, array('DROP', 'ADD'), TRUE)) {
 			return parent::_alter_table($alter_type, $table, $field);
 		}
 
-		$sql = 'ALTER TABLE '.$this->db->escape_identifiers($table);
+		$sql = 'ALTER TABLE ' . $this->db->escape_identifiers($table);
 		$sqls = array();
-		for ($i = 0, $c = count($field); $i < $c; $i++)
-		{
-			if ($field[$i]['_literal'] !== FALSE)
-			{
+		for ($i = 0, $c = count($field); $i < $c; $i++) {
+			if ($field[$i]['_literal'] !== FALSE) {
 				return FALSE;
 			}
 
-			if (isset($field[$i]['type']))
-			{
-				$sqls[] = $sql.' ALTER COLUMN '.$this->db->escape_identififers($field[$i]['name'])
-					.' TYPE '.$field[$i]['type'].$field[$i]['length'];
+			if (isset($field[$i]['type'])) {
+				$sqls[] = $sql . ' ALTER COLUMN ' . $this->db->escape_identififers($field[$i]['name'])
+					. ' TYPE ' . $field[$i]['type'] . $field[$i]['length'];
 			}
 
-			if ( ! empty($field[$i]['default']))
-			{
-				$sqls[] = $sql.' ALTER COLUMN '.$this->db->escape_identifiers($field[$i]['name'])
-					.' SET DEFAULT '.$field[$i]['default'];
+			if (!empty($field[$i]['default'])) {
+				$sqls[] = $sql . ' ALTER COLUMN ' . $this->db->escape_identifiers($field[$i]['name'])
+					. ' SET DEFAULT ' . $field[$i]['default'];
 			}
 
-			if (isset($field[$i]['null']))
-			{
+			if (isset($field[$i]['null'])) {
 				$sqls[] = 'UPDATE "RDB$RELATION_FIELDS" SET "RDB$NULL_FLAG" = '
-					.($field[$i]['null'] === TRUE ? 'NULL' : '1')
-					.' WHERE "RDB$FIELD_NAME" = '.$this->db->escape($field[$i]['name'])
-					.' AND "RDB$RELATION_NAME" = '.$this->db->escape($table);
+					. ($field[$i]['null'] === TRUE ? 'NULL' : '1')
+					. ' WHERE "RDB$FIELD_NAME" = ' . $this->db->escape($field[$i]['name'])
+					. ' AND "RDB$RELATION_NAME" = ' . $this->db->escape($table);
 			}
 
-			if ( ! empty($field[$i]['new_name']))
-			{
-				$sqls[] = $sql.' ALTER COLUMN '.$this->db->escape_identifiers($field[$i]['name'])
-					.' TO '.$this->db->escape_identifiers($field[$i]['new_name']);
+			if (!empty($field[$i]['new_name'])) {
+				$sqls[] = $sql . ' ALTER COLUMN ' . $this->db->escape_identifiers($field[$i]['name'])
+					. ' TO ' . $this->db->escape_identifiers($field[$i]['new_name']);
 			}
 		}
 
 		return $sqls;
- 	}
+	}
 
 	// --------------------------------------------------------------------
 
@@ -196,10 +187,10 @@ class CI_DB_ibase_forge extends CI_DB_forge {
 	protected function _process_column($field)
 	{
 		return $this->db->escape_identifiers($field['name'])
-			.' '.$field['type'].$field['length']
-			.$field['null']
-			.$field['unique']
-			.$field['default'];
+			. ' ' . $field['type'] . $field['length']
+			. $field['null']
+			. $field['unique']
+			. $field['default'];
 	}
 
 	// --------------------------------------------------------------------
@@ -214,8 +205,7 @@ class CI_DB_ibase_forge extends CI_DB_forge {
 	 */
 	protected function _attr_type(&$attributes)
 	{
-		switch (strtoupper($attributes['TYPE']))
-		{
+		switch (strtoupper($attributes['TYPE'])) {
 			case 'TINYINT':
 				$attributes['TYPE'] = 'SMALLINT';
 				$attributes['UNSIGNED'] = FALSE;
@@ -230,7 +220,8 @@ class CI_DB_ibase_forge extends CI_DB_forge {
 			case 'BIGINT':
 				$attributes['TYPE'] = 'INT64';
 				return;
-			default: return;
+			default:
+				return;
 		}
 	}
 
@@ -247,5 +238,4 @@ class CI_DB_ibase_forge extends CI_DB_forge {
 	{
 		// Not supported
 	}
-
 }

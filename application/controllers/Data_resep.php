@@ -1,3 +1,4 @@
+
 <?php
 class data_resep extends CI_Controller
 {
@@ -11,9 +12,8 @@ class data_resep extends CI_Controller
 
     public function inputsession()
     {
-        if(isset($_POST['idp']))
-        { 
-        $_SESSION["idp"]=$_POST["idp"];
+        if (isset($_POST['idp'])) {
+            $_SESSION["idp"] = $_POST["idp"];
         }
         $this->session->userdata('idp', $_POST['idp']);
         redirect(base_url('data_resep'), 'refresh');
@@ -37,18 +37,18 @@ class data_resep extends CI_Controller
     public function tambahresep()
     {
         role1();
-            //cek apakah takaran sudah ada ?
-            $takaran = $this->input->post('id_takaran');
-            $produk = $this->input->post('id_produk');
-            $cek = $this->dataresep_model->cekId($takaran, $produk);
-            if ($cek) {
-                $this->session->set_flashdata('message', '<div class="alert alert-warning" role="alert">takaran sudah ada didalam resep !</div>');
-                redirect(base_url('data_resep'), 'refresh');
-            } else {
+        //cek apakah takaran sudah ada ?
+        $takaran = $this->input->post('id_takaran');
+        $produk = $this->input->post('id_produk');
+        $cek = $this->dataresep_model->cekId($takaran, $produk);
+        if ($cek) {
+            $this->session->set_flashdata('message', '<div class="alert alert-warning" role="alert">takaran sudah ada didalam resep !</div>');
+            redirect(base_url('data_resep'), 'refresh');
+        } else {
 
             $id_p = $this->input->post('id_produk');
             $takaran = $this->input->post('id_takaran');
-            foreach ($this->dataresep_model->bahan($takaran) as $bhn){
+            foreach ($this->dataresep_model->bahan($takaran) as $bhn) {
                 $bahan = $bhn->id_bahan;
             }
             $jumlah = $this->input->post('jumlah');

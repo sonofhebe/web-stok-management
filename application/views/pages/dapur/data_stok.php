@@ -11,14 +11,16 @@
         </div>
     </section>
 
-</script>
+    </script>
 
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
-                        <?php foreach ($dapur as $data) { ?>
-                            <h5>Data Stok di <br>"<?= $data->nama_dapur ?>"</h5>
-                        <?php } ?>
+
+                <?php foreach ($dapur as $data) { ?>
+                    <h5>Data Stok di <br>"<?= $data->nama_dapur ?>"</h5>
+
+                <?php } ?>
                 <div class="card-body">
                     <div class="flashdata" id="flashdata" onload="clearmy()">
                         <?= $this->session->flashdata('message'); ?>
@@ -36,8 +38,9 @@
                                 </tr>
                             </thead>
                             <tbody>
+
                                 <?php $n = 1;
-                                  foreach ($stok as $data) { ?>
+                                foreach ($stok as $data) { ?>
                                     <tr>
                                         <td><?= $n; ?></td>
                                         <!-- Modal Modal -->
@@ -71,8 +74,9 @@
                                             </div>
                                         </td>
                                     </tr>
+
                                 <?php $n++;
-                                  } ?>
+                                } ?>
                             </tbody>
                         </table>
                     </div>
@@ -94,22 +98,24 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                            <form action="<?= base_url('tambah-stok')?>" method="post" enctype="multipart/form-data">
-                                    <input type="hidden" name="id_dapur" class="form-control" value="<?= $data->id_dapur ?>">
-                                        <div class="form-group">
-                                            <label for="">Bahan</label>
-                                            <select name="id_bahan" id="" class="form-control" required>
-                                                <option value="" selected disabled>-- PILIH BAHAN --</option>
-                                                <?php foreach ($bahan as $data_b) { ?>]
-                                                    <option value="<?= $data_b->id_bahan ?>"><?= $data_b->nama_kategori ?> : <?= $data_b->nama_bahan?></option>
-                                                <?php } ?>
-                                            </select>
-                                        </div>
-                                        </div>
-                                        <div class="modal-footer">    
-                                        <button class="btn btn-success btn-sm" type="submit">Simpan</button>
-                                        </div>
-                            </form>
+                    <form action="<?= base_url('tambah-stok') ?>" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="id_dapur" class="form-control" value="<?= $data->id_dapur ?>">
+                        <div class="form-group">
+                            <label for="">Bahan</label>
+                            <select name="id_bahan" id="" class="form-control" required>
+                                <option value="" selected disabled>-- PILIH BAHAN --</option>
+
+                                <?php foreach ($bahan as $data_b) { ?>]
+                                <option value="<?= $data_b->id_bahan ?>"><?= $data_b->nama_kategori ?> : <?= $data_b->nama_bahan ?></option>
+
+                            <?php } ?>
+                            </select>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success btn-sm" type="submit">Simpan</button>
+                </div>
+                </form>
             </div>
         </div>
     </div>

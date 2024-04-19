@@ -20,9 +20,11 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                  <?php if ($this->session->userdata('role_id') == 1) { ?>
-                    <button class="btn btn-success btn-sm mb-2" data-toggle="modal" data-target="#tambahtakaran"><i class="fas fa-plus-circel"></i>Tambah Data</button>
-                        <?php } ?>
+
+                    <?php if ($this->session->userdata('role_id') == 1) { ?>
+                        <button class="btn btn-success btn-sm mb-2" data-toggle="modal" data-target="#tambahtakaran"><i class="fas fa-plus-circel"></i>Tambah Data</button>
+
+                    <?php } ?>
                     <div class="flashdata" id="flashdata" onload="clearmy()">
                         <?= $this->session->flashdata('message'); ?>
                     </div>
@@ -35,14 +37,17 @@
                                     <th>Nama Takaran</th>
                                     <th>Bahan Dasar</th>
                                     <th>Satuan</th>
-                  <?php if ($this->session->userdata('role_id') == 1) { ?>
-                                    <th>Aksi</th>
-                        <?php } ?>
+
+                                    <?php if ($this->session->userdata('role_id') == 1) { ?>
+                                        <th>Aksi</th>
+
+                                    <?php } ?>
                                 </tr>
                             </thead>
                             <tbody>
+
                                 <?php $n = 1;
-                                  foreach ($takaran as $data) { ?>
+                                foreach ($takaran as $data) { ?>
                                     <tr>
                                         <td><?= $n; ?></td>
 
@@ -93,14 +98,16 @@
                                                                                 <label for="">Bahan Dasar</label>
                                                                                 <select name="id_bahan" id="" class="form-control" required>
                                                                                     <option value="" selected disabled>-- PILIH BAHAN --</option>
+
                                                                                     <?php foreach ($bahan as $b) { ?>
                                                                                         <option value="<?= $b->id_bahan ?>" <?= $b->id_bahan == $data->id_bahan ? 'selected' : '' ?>><?= $b->nama_kategori ?> : <?= $b->nama_bahan ?></option>
+
                                                                                     <?php } ?>
                                                                                 </select>
                                                                             </div>
-                                                                        <div class="form-group">
-                                                                            <button class="btn btn-success btn-sm" type="submit">Simpan</button>
-                                                                        </div>
+                                                                            <div class="form-group">
+                                                                                <button class="btn btn-success btn-sm" type="submit">Simpan</button>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </form>
@@ -116,17 +123,20 @@
                                         <td><?= $data->nama_takaran ?></td>
                                         <td><?= $data->nama_bahan ?></td>
                                         <td><?= $data->nama_satuan ?></td>
-                  <?php if ($this->session->userdata('role_id') == 1) { ?>
-                                        <td>
-                                            <div class="btn-group">
-                                                <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapus<?= $data->id_takaran ?>"><i class="fas fa-trash-alt"></i></button>
-                                                <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit<?= $data->id_takaran ?>"><i class="fas fa-edit"></i></button>
-                                            </div>
-                                        </td>
-                        <?php } ?>
+
+                                        <?php if ($this->session->userdata('role_id') == 1) { ?>
+                                            <td>
+                                                <div class="btn-group">
+                                                    <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapus<?= $data->id_takaran ?>"><i class="fas fa-trash-alt"></i></button>
+                                                    <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit<?= $data->id_takaran ?>"><i class="fas fa-edit"></i></button>
+                                                </div>
+                                            </td>
+
+                                        <?php } ?>
                                     </tr>
+
                                 <?php $n++;
-                                  } ?>
+                                } ?>
                             </tbody>
                         </table>
                     </div>
@@ -162,15 +172,17 @@
                                             <label for="">Bahan Dasar</label>
                                             <select name="id_bahan" id="" class="form-control" required>
                                                 <option value="" selected disabled>-- PILIH BAHAN --</option>
+
                                                 <?php foreach ($bahan as $b) { ?>
                                                     <option value="<?= $b->id_bahan ?>"><?= $b->nama_kategori ?> : <?= $b->nama_bahan ?></option>
+
                                                 <?php } ?>
                                             </select>
                                         </div>
-                                    <div class="form-group">
-                                        <button class="btn btn-success btn-sm" type="submit">Simpan</button>
+                                        <div class="form-group">
+                                            <button class="btn btn-success btn-sm" type="submit">Simpan</button>
+                                        </div>
                                     </div>
-                                </div>
                             </form>
                         </div>
                     </div>

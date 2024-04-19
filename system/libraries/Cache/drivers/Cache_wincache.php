@@ -1,3 +1,4 @@
+
 <?php
 /**
  * CodeIgniter
@@ -35,7 +36,7 @@
  * @since	Version 3.0.0
  * @filesource
  */
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  * CodeIgniter Wincache Caching Class
@@ -49,7 +50,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @author		Mike Murkovic
  * @link
  */
-class CI_Cache_wincache extends CI_Driver {
+class CI_Cache_wincache extends CI_Driver
+{
 
 	/**
 	 * Class constructor
@@ -61,8 +63,7 @@ class CI_Cache_wincache extends CI_Driver {
 	 */
 	public function __construct()
 	{
-		if ( ! $this->is_supported())
-		{
+		if (!$this->is_supported()) {
 			log_message('error', 'Cache: Failed to initialize Wincache; extension not loaded/enabled?');
 		}
 	}
@@ -169,10 +170,10 @@ class CI_Cache_wincache extends CI_Driver {
 	 *
 	 * @return	mixed	array on success, false on failure
 	 */
-	 public function cache_info()
-	 {
-		 return wincache_ucache_info(TRUE);
-	 }
+	public function cache_info()
+	{
+		return wincache_ucache_info(TRUE);
+	}
 
 	// ------------------------------------------------------------------------
 
@@ -184,8 +185,7 @@ class CI_Cache_wincache extends CI_Driver {
 	 */
 	public function get_metadata($id)
 	{
-		if ($stored = wincache_ucache_info(FALSE, $id))
-		{
+		if ($stored = wincache_ucache_info(FALSE, $id)) {
 			$age = $stored['ucache_entries'][1]['age_seconds'];
 			$ttl = $stored['ucache_entries'][1]['ttl_seconds'];
 			$hitcount = $stored['ucache_entries'][1]['hitcount'];

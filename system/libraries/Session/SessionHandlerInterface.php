@@ -1,3 +1,4 @@
+
 <?php
 /**
  * CodeIgniter
@@ -35,7 +36,7 @@
  * @since	Version 3.0.0
  * @filesource
  */
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  * SessionHandlerInterface
@@ -48,7 +49,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @author	Andrey Andreev
  * @link	https://codeigniter.com/user_guide/libraries/sessions.html
  */
-interface SessionHandlerInterface {
+interface SessionHandlerInterface
+{
 
 	public function open($save_path, $name);
 	public function close();

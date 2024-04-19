@@ -102,16 +102,18 @@
                                   <h5><b>Profile Anda</b></h5>
                                   <div class="col-12">
                                       <ul>
+
                                           <?php foreach ($us as $d) { ?>
                                               <li>Nama : <?= $d->nama ?></li>
                                               <li>No Hp : <?= $d->no_hp ?></li>
                                               <li>Alamat : <?= $d->alamat ?></li>
+
                                           <?php } ?>
                                       </ul>
-                                      
+
                                       <div class="btn-group">
-                                                  <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#ubahpassword"><i class="fas fa-key"></i> Ubah Password</button>
-                                              </div>
+                                          <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#ubahpassword"><i class="fas fa-key"></i> Ubah Password</button>
+                                      </div>
                                   </div>
                               </div>
                           </div>

@@ -1,3 +1,4 @@
+
 <?php
 class laporandrop_model extends CI_Model
 {

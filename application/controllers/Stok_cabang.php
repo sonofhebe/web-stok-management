@@ -1,3 +1,4 @@
+
 <?php
 class stok_cabang extends CI_Controller
 {

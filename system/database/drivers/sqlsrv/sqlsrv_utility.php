@@ -1,3 +1,4 @@
+
 <?php
 /**
  * CodeIgniter
@@ -35,7 +36,7 @@
  * @since	Version 2.0.3
  * @filesource
  */
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  * SQLSRV Utility Class
@@ -44,7 +45,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @author		EllisLab Dev Team
  * @link		https://codeigniter.com/user_guide/database/
  */
-class CI_DB_sqlsrv_utility extends CI_DB_utility {
+class CI_DB_sqlsrv_utility extends CI_DB_utility
+{
 
 	/**
 	 * List databases statement
@@ -73,5 +75,4 @@ class CI_DB_sqlsrv_utility extends CI_DB_utility {
 		// Currently unsupported
 		return $this->db->display_error('db_unsupported_feature');
 	}
-
 }

@@ -1,3 +1,4 @@
+
 <?php
 class data_jadwal extends CI_Controller
 {
@@ -25,9 +26,8 @@ class data_jadwal extends CI_Controller
 
     public function inputsession()
     {
-        if(isset($_POST['hari']))
-        { 
-        $_SESSION["hari"]=$_POST["hari"];
+        if (isset($_POST['hari'])) {
+            $_SESSION["hari"] = $_POST["hari"];
         }
         $this->session->userdata('hari', $_POST['hari']);
         redirect(base_url('data_jadwal'), 'refresh');
@@ -50,18 +50,18 @@ class data_jadwal extends CI_Controller
                 redirect(base_url('data_jadwal'), 'refresh');
             } else {
 
-            $hari = $this->session->userdata('hari');
-            $id_p = $this->input->post('id_produk');
+                $hari = $this->session->userdata('hari');
+                $id_p = $this->input->post('id_produk');
 
-            $data = array(
-                'hari'          => $hari,
-                'id_produk'   => $id_p,
-                'tgl_input'     => date('Y-m-d H:i:s')
-            );
-            $this->jadwal_model->inputjadwal($data);
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data berhasil di simpan !</div>');
-            redirect(base_url('data_jadwal'), 'refresh');
-        }
+                $data = array(
+                    'hari'          => $hari,
+                    'id_produk'   => $id_p,
+                    'tgl_input'     => date('Y-m-d H:i:s')
+                );
+                $this->jadwal_model->inputjadwal($data);
+                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data berhasil di simpan !</div>');
+                redirect(base_url('data_jadwal'), 'refresh');
+            }
         }
     }
 

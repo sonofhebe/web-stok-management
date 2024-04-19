@@ -1,196 +1,377 @@
 <?php
 
 header("Content-type: application/vnd-ms-excel");
-header("Content-Disposition: attachment; filename=penjualan-mingguan-$nama_dapur-$awal.xls"); 
+header("Content-Disposition: attachment; filename=penjualan-mingguan-$nama_dapur-$awal.xls");
 
 ?>
 <p align="center" style="font-weight:bold;font-size:14pt">Data Penjualan Produk dari <?= $nama_dapur ?>
-<br>Pada tanggal : <?= $awal ?> s/d <?php echo date('Y-m-d', strtotime($awal. ' + 6 days')); ?>
-<br>Produk terlaris : <?= $terlaris ?></p>
+	<br>Pada tanggal : <?= $awal ?> s/d
+	<?php echo date('Y-m-d', strtotime($awal . ' + 6 days')); ?>
+	<br>Produk terlaris : <?= $terlaris ?>
+</p>
 
 <div class="table-responsive">
-<table id="print" style="width:100%" border='1'>
-<thead>
-<tr>
-<th rowspan="3">NO</th>
-    <th rowspan="3">NAMA PRODUK</th>
-    <th colspan="7">PRODUK TERJUAL</th>
-    <th rowspan="3">TOTAL TERJUAL</th>
-</tr>
-<tr>
-    <th>JUMAT</th>
-    <th>SABTU</th>
-    <th>MINGGU</th>
-    <th>SENIN</th>
-    <th>SELASA</th>
-    <th>RABU</th>
-    <th>KAMIS</th>
-</tr>
-<tr>
-        <th><?= $awal ?></th>
-        <th><?php echo date('Y-m-d', strtotime($awal. ' + 1 days')); ?></th>
-        <th><?php echo date('Y-m-d', strtotime($awal. ' + 2 days')); ?></th>
-        <th><?php echo date('Y-m-d', strtotime($awal. ' + 3 days')); ?></th>
-        <th><?php echo date('Y-m-d', strtotime($awal. ' + 4 days')); ?></th>
-        <th><?php echo date('Y-m-d', strtotime($awal. ' + 5 days')); ?></th>
-        <th><?php echo date('Y-m-d', strtotime($awal. ' + 6 days')); ?></th>
-</tr>
-</thead>
-<tbody>
-    <tr>
-<?php $n = 1;
-    foreach ($produk as $ds) { ?>
-        <td align='center'><?= $n; ?></td>
-        <td><?= $ds->nama_produk ?></td>
-        <!-- PRODUK TERJUAL -->
-<?php 
-    $this->db->select_sum('jumlah');
-    if ($id_dapur==0) {
-    $this->db->where('id_produk', $ds->id_produk);
-    } else {
-    $this->db->where('id_produk', $ds->id_produk);
-    $this->db->where('id_dapur ="'. $id_dapur .'"');
-    }
-    $this->db->where('tanggal = "'. $awal.'"');
-    $d1 = $this->db->get('penjualan')->result();
-    ?><td align='center'>
-    <?PHP foreach ($d1 as $j) {
-    if (!$j->jumlah) {
-        echo "-";
-    } else {
-        echo $j->jumlah;
-    }
-} ?> </td>
-<?php 
-    $this->db->select_sum('jumlah');
-    if ($id_dapur==0) {
-    $this->db->where('id_produk', $ds->id_produk);
-    } else {
-    $this->db->where('id_produk', $ds->id_produk);
-    $this->db->where('id_dapur ="'. $id_dapur .'"');
-    }
-    $this->db->where('tanggal = "'. $awal.'"+ INTERVAL 1 DAY');
-    $d2 = $this->db->get('penjualan')->result();
-    ?><td align='center'>
-    <?PHP foreach ($d2 as $j) {
-    if (!$j->jumlah) {
-        echo "-";
-    } else {
-        echo $j->jumlah;
-    }
-} ?> </td>
-<?php
-    $this->db->select_sum('jumlah');
-    if ($id_dapur==0) {
-    $this->db->where('id_produk', $ds->id_produk);
-    } else {
-    $this->db->where('id_produk', $ds->id_produk);
-    $this->db->where('id_dapur ="'. $id_dapur .'"');
-    }
-    $this->db->where('tanggal = "'. $awal.'"+ INTERVAL 2 DAY');
-    $d3 = $this->db->get('penjualan')->result();
-    ?><td align='center'>
-    <?PHP foreach ($d3 as $j) {
-    if (!$j->jumlah) {
-        echo "-";
-    } else {
-        echo $j->jumlah;
-    }
-} ?> </td>
-<?php
-    $this->db->select_sum('jumlah');
-    if ($id_dapur==0) {
-    $this->db->where('id_produk', $ds->id_produk);
-    } else {
-    $this->db->where('id_produk', $ds->id_produk);
-    $this->db->where('id_dapur ="'. $id_dapur .'"');
-    }
-    $this->db->where('tanggal = "'. $awal.'"+ INTERVAL 3 DAY');
-    $d4 = $this->db->get('penjualan')->result();
-    ?><td align='center'>
-    <?PHP foreach ($d4 as $j) {
-    if (!$j->jumlah) {
-        echo "-";
-    } else {
-        echo $j->jumlah;
-    }
-} ?> </td>
-<?php
-    $this->db->select_sum('jumlah');
-    if ($id_dapur==0) {
-    $this->db->where('id_produk', $ds->id_produk);
-    } else {
-    $this->db->where('id_produk', $ds->id_produk);
-    $this->db->where('id_dapur ="'. $id_dapur .'"');
-    }
-    $this->db->where('tanggal = "'. $awal.'"+ INTERVAL 4 DAY');
-    $d5 = $this->db->get('penjualan')->result();
-    ?><td align='center'>
-    <?PHP foreach ($d5 as $j) {
-    if (!$j->jumlah) {
-        echo "-";
-    } else {
-        echo $j->jumlah;
-    }
-} ?> </td>
-<?php
-    $this->db->select_sum('jumlah');
-    if ($id_dapur==0) {
-    $this->db->where('id_produk', $ds->id_produk);
-    } else {
-    $this->db->where('id_produk', $ds->id_produk);
-    $this->db->where('id_dapur ="'. $id_dapur .'"');
-    }
-    $this->db->where('tanggal = "'. $awal.'"+ INTERVAL 5 DAY');
-    $d6 = $this->db->get('penjualan')->result();
-    ?><td align='center'>
-    <?PHP foreach ($d6 as $j) {
-    if (!$j->jumlah) {
-        echo "-";
-    } else {
-        echo $j->jumlah;
-    }
-} ?> </td>
-<?php 
-    $this->db->select_sum('jumlah');
-    if ($id_dapur==0) {
-    $this->db->where('id_produk', $ds->id_produk);
-    } else {
-    $this->db->where('id_produk', $ds->id_produk);
-    $this->db->where('id_dapur ="'. $id_dapur .'"');
-    }
-    $this->db->where('tanggal = "'. $awal.'"+ INTERVAL 6 DAY');
-    $d7 = $this->db->get('penjualan')->result();
-    ?><td align='center'>
-    <?PHP foreach ($d7 as $j) {
-    if (!$j->jumlah) {
-        echo "-";
-    } else {
-        echo $j->jumlah;
-    }
-} ?> </td>
-<!-- TOTAL -->
-<?php 
-    $this->db->select_sum('jumlah');
-    if ($id_dapur==0) {
-    $this->db->where('id_produk', $ds->id_produk);
-    } else {
-    $this->db->where('id_produk', $ds->id_produk);
-    $this->db->where('id_dapur ="'. $id_dapur .'"');
-    }
-    $this->db->where('tanggal BETWEEN "'. $awal.'"AND "'. $awal.'"+ INTERVAL 6 DAY');
-    $tot = $this->db->get('penjualan')->result();
-    ?><td align='center'><?PHP 
-    foreach ($tot as $t) {
-    if (!$t->jumlah) {
-        echo "-";
-    } else {
-        echo $t->jumlah;
-    }
-} ?> </td>
-    </tr>
-    <?php $n++;
-    } ?>
-</tbody>
-</table>
+	<table id="print" style="width:100%" border='1'>
+		<thead>
+			<tr>
+				<th rowspan="4">NO</th>
+				<th rowspan="4">NAMA PRODUK</th>
+				<th colspan="14">PRODUK TERJUAL</th>
+				<th rowspan="3" colspan="2">TOTAL TERJUAL</th>
+			</tr>
+			<tr>
+				<th colspan="2">JUMAT</th>
+				<th colspan="2">SABTU</th>
+				<th colspan="2">MINGGU</th>
+				<th colspan="2">SENIN</th>
+				<th colspan="2">SELASA</th>
+				<th colspan="2">RABU</th>
+				<th colspan="2">KAMIS</th>
+			</tr>
+			<tr>
+				<th colspan="2"><?= $awal ?></th>
+				<th colspan="2">
+					<?php echo date('Y-m-d', strtotime($awal . ' + 1 days')); ?></th>
+				<th colspan="2">
+					<?php echo date('Y-m-d', strtotime($awal . ' + 2 days')); ?></th>
+				<th colspan="2">
+					<?php echo date('Y-m-d', strtotime($awal . ' + 3 days')); ?></th>
+				<th colspan="2">
+					<?php echo date('Y-m-d', strtotime($awal . ' + 4 days')); ?></th>
+				<th colspan="2">
+					<?php echo date('Y-m-d', strtotime($awal . ' + 5 days')); ?></th>
+				<th colspan="2">
+					<?php echo date('Y-m-d', strtotime($awal . ' + 6 days')); ?></th>
+			</tr>
+			<tr>
+
+				<?php for ($i = 0; $i < 7; $i++) { ?>
+					<th>JUMLAH</th>
+					<th>HARGA</th>
+
+				<?php } ?>
+				<th>JUMLAH</th>
+				<th>HARGA</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+
+				<?php $n = 1;
+				foreach ($produk as $ds) {
+					$harga = $this->db->where('id_produk_variant', $ds->id_produk_variant)->get('produk_variant')->result()[0]->harga;
+				?>
+					<td align='center'><?= $n; ?></td>
+					<td><?= $ds->nama ?></td>
+					<!-- PRODUK TERJUAL -->
+
+					<?php
+					$this->db->select_sum('jumlah');
+					if ($id_dapur == 0) {
+						$this->db->where('id_produk', $ds->id_produk_variant);
+					} else {
+						$this->db->where('id_produk', $ds->id_produk_variant);
+						$this->db->where('id_dapur ="' . $id_dapur . '"');
+					}
+					$this->db->where('tanggal = "' . $awal . '"');
+					$d1 = $this->db->get('penjualan')->result();
+					foreach ($d1 as $j) {
+						if (!$j->jumlah) {
+							echo "<td align='center'>-</td>";
+							echo "<td align='center'>-</td>";
+						} else {
+							echo "<td align='center'>" . $j->jumlah . "</td>";
+							echo "<td align='center'>Rp." . number_format($j->jumlah * $harga, 0, ".", ".") . "</td>";
+						}
+					}
+
+					$this->db->select_sum('jumlah');
+					if ($id_dapur == 0) {
+						$this->db->where('id_produk', $ds->id_produk_variant);
+					} else {
+						$this->db->where('id_produk', $ds->id_produk_variant);
+						$this->db->where('id_dapur ="' . $id_dapur . '"');
+					}
+					$this->db->where('tanggal = "' . $awal . '"+ INTERVAL 1 DAY');
+					$d2 = $this->db->get('penjualan')->result();
+					foreach ($d2 as $j) {
+						if (!$j->jumlah) {
+							echo "<td align='center'>-</td>";
+							echo "<td align='center'>-</td>";
+						} else {
+							echo "<td align='center'>" . $j->jumlah . "</td>";
+							echo "<td align='center'>Rp." . number_format($j->jumlah * $harga, 0, ".", ".") . "</td>";
+						}
+					}
+
+					$this->db->select_sum('jumlah');
+					if ($id_dapur == 0) {
+						$this->db->where('id_produk', $ds->id_produk_variant);
+					} else {
+						$this->db->where('id_produk', $ds->id_produk_variant);
+						$this->db->where('id_dapur ="' . $id_dapur . '"');
+					}
+					$this->db->where('tanggal = "' . $awal . '"+ INTERVAL 2 DAY');
+					$d3 = $this->db->get('penjualan')->result();
+					foreach ($d3 as $j) {
+						if (!$j->jumlah) {
+							echo "<td align='center'>-</td>";
+							echo "<td align='center'>-</td>";
+						} else {
+							echo "<td align='center'>" . $j->jumlah . "</td>";
+							echo "<td align='center'>Rp." . number_format($j->jumlah * $harga, 0, ".", ".") . "</td>";
+						}
+					}
+
+					$this->db->select_sum('jumlah');
+					if ($id_dapur == 0) {
+						$this->db->where('id_produk', $ds->id_produk_variant);
+					} else {
+						$this->db->where('id_produk', $ds->id_produk_variant);
+						$this->db->where('id_dapur ="' . $id_dapur . '"');
+					}
+					$this->db->where('tanggal = "' . $awal . '"+ INTERVAL 3 DAY');
+					$d4 = $this->db->get('penjualan')->result();
+					foreach ($d4 as $j) {
+						if (!$j->jumlah) {
+							echo "<td align='center'>-</td>";
+							echo "<td align='center'>-</td>";
+						} else {
+							echo "<td align='center'>" . $j->jumlah . "</td>";
+							echo "<td align='center'>Rp." . number_format($j->jumlah * $harga, 0, ".", ".") . "</td>";
+						}
+					}
+
+					$this->db->select_sum('jumlah');
+					if ($id_dapur == 0) {
+						$this->db->where('id_produk', $ds->id_produk_variant);
+					} else {
+						$this->db->where('id_produk', $ds->id_produk_variant);
+						$this->db->where('id_dapur ="' . $id_dapur . '"');
+					}
+					$this->db->where('tanggal = "' . $awal . '"+ INTERVAL 4 DAY');
+					$d5 = $this->db->get('penjualan')->result();
+					foreach ($d5 as $j) {
+						if (!$j->jumlah) {
+							echo "<td align='center'>-</td>";
+							echo "<td align='center'>-</td>";
+						} else {
+							echo "<td align='center'>" . $j->jumlah . "</td>";
+							echo "<td align='center'>Rp." . number_format($j->jumlah * $harga, 0, ".", ".") . "</td>";
+						}
+					}
+
+					$this->db->select_sum('jumlah');
+					if ($id_dapur == 0) {
+						$this->db->where('id_produk', $ds->id_produk_variant);
+					} else {
+						$this->db->where('id_produk', $ds->id_produk_variant);
+						$this->db->where('id_dapur ="' . $id_dapur . '"');
+					}
+					$this->db->where('tanggal = "' . $awal . '"+ INTERVAL 5 DAY');
+					$d6 = $this->db->get('penjualan')->result();
+					foreach ($d6 as $j) {
+						if (!$j->jumlah) {
+							echo "<td align='center'>-</td>";
+							echo "<td align='center'>-</td>";
+						} else {
+							echo "<td align='center'>" . $j->jumlah . "</td>";
+							echo "<td align='center'>Rp." . number_format($j->jumlah * $harga, 0, ".", ".") . "</td>";
+						}
+					}
+
+					$this->db->select_sum('jumlah');
+					if ($id_dapur == 0) {
+						$this->db->where('id_produk', $ds->id_produk_variant);
+					} else {
+						$this->db->where('id_produk', $ds->id_produk_variant);
+						$this->db->where('id_dapur ="' . $id_dapur . '"');
+					}
+					$this->db->where('tanggal = "' . $awal . '"+ INTERVAL 6 DAY');
+					$d7 = $this->db->get('penjualan')->result();
+					foreach ($d7 as $j) {
+						if (!$j->jumlah) {
+							echo "<td align='center'>-</td>";
+							echo "<td align='center'>-</td>";
+						} else {
+							echo "<td align='center'>" . $j->jumlah . "</td>";
+							echo "<td align='center'>Rp." . number_format($j->jumlah * $harga, 0, ".", ".") . "</td>";
+						}
+					}
+
+					// TOTAL
+					$this->db->select_sum('jumlah');
+					if ($id_dapur == 0) {
+						$this->db->where('id_produk', $ds->id_produk_variant);
+					} else {
+						$this->db->where('id_produk', $ds->id_produk_variant);
+						$this->db->where('id_dapur ="' . $id_dapur . '"');
+					}
+					$this->db->where('tanggal BETWEEN "' . $awal . '"AND "' . $awal . '"+ INTERVAL 6 DAY');
+					$tot = $this->db->get('penjualan')->result();
+					foreach ($tot as $t) {
+						if (!$t->jumlah) {
+							echo "<td align='center'>-</td>";
+							echo "<td align='center'>-</td>";
+						} else {
+							echo "<td align='center'>" . $t->jumlah . "</td>";
+							echo "<td align='center'>Rp." . number_format($t->jumlah * $harga, 0, ".", ".") . "</td>";
+						}
+					} ?>
+			</tr>
+
+		<?php $n++;
+				} ?>
+		<tr>
+			<td align='center' colspan="2" style="background-color:#FFFF99 ;">TOTAL</td>
+
+			<?php
+
+			//TOTAL BAWAH
+			$totalBawah1 = $this->db
+				->select('SUM(jumlah) as totaljumlah, SUM(jumlah * harga) as totalharga')
+				->from('penjualan')
+				->join('produk_variant', 'penjualan.id_produk = produk_variant.id_produk_variant')
+				->where('penjualan.tanggal', $awal);
+			if ($id_dapur != 0) {
+				$totalBawah1 = $totalBawah1->where('penjualan.id_dapur', $id_dapur);
+			}
+			$totalBawah1 = $totalBawah1->get()->row();
+			if (!$totalBawah1 || !$totalBawah1->totaljumlah) {
+				echo "<td align='center' style='background-color:#FFFFE0 ;'>-</td>";
+				echo "<td align='center' style='background-color:#FFFFE0 ;'>-</td>";
+			} else {
+				echo "<td align='center' style='background-color:#FFFFE0 ;'>" . $totalBawah1->totaljumlah . "</td>";
+				echo "<td align='center' style='background-color:#FFFFE0 ;'>Rp." . number_format($totalBawah1->totalharga, 0, ".", ".") . "</td>";
+			}
+
+			$totalBawah2 = $this->db
+				->select('SUM(jumlah) as totaljumlah, SUM(jumlah * harga) as totalharga')
+				->from('penjualan')
+				->join('produk_variant', 'penjualan.id_produk = produk_variant.id_produk_variant')
+				->where('tanggal = "' . $awal . '"+ INTERVAL 1 DAY');
+			if ($id_dapur != 0) {
+				$totalBawah2 = $totalBawah2->where('penjualan.id_dapur', $id_dapur);
+			}
+			$totalBawah2 = $totalBawah2->get()->row();
+			if (!$totalBawah2 || !$totalBawah2->totaljumlah) {
+				echo "<td align='center' style='background-color:#FFFFE0 ;'>-</td>";
+				echo "<td align='center' style='background-color:#FFFFE0 ;'>-</td>";
+			} else {
+				echo "<td align='center' style='background-color:#FFFFE0 ;'>" . $totalBawah2->totaljumlah . "</td>";
+				echo "<td align='center' style='background-color:#FFFFE0 ;'>Rp." . number_format($totalBawah2->totalharga, 0, ".", ".") . "</td>";
+			}
+
+			$totalBawah3 = $this->db
+				->select('SUM(jumlah) as totaljumlah, SUM(jumlah * harga) as totalharga')
+				->from('penjualan')
+				->join('produk_variant', 'penjualan.id_produk = produk_variant.id_produk_variant')
+				->where('tanggal = "' . $awal . '"+ INTERVAL 2 DAY');
+			if ($id_dapur != 0) {
+				$totalBawah3 = $totalBawah3->where('penjualan.id_dapur', $id_dapur);
+			}
+			$totalBawah3 = $totalBawah3->get()->row();
+			if (!$totalBawah3 || !$totalBawah3->totaljumlah) {
+				echo "<td align='center' style='background-color:#FFFFE0 ;'>-</td>";
+				echo "<td align='center' style='background-color:#FFFFE0 ;'>-</td>";
+			} else {
+				echo "<td align='center' style='background-color:#FFFFE0 ;'>" . $totalBawah3->totaljumlah . "</td>";
+				echo "<td align='center' style='background-color:#FFFFE0 ;'>Rp." . number_format($totalBawah3->totalharga, 0, ".", ".") . "</td>";
+			}
+
+			$totalBawah4 = $this->db
+				->select('SUM(jumlah) as totaljumlah, SUM(jumlah * harga) as totalharga')
+				->from('penjualan')
+				->join('produk_variant', 'penjualan.id_produk = produk_variant.id_produk_variant')
+				->where('tanggal = "' . $awal . '"+ INTERVAL 3 DAY');
+			if ($id_dapur != 0) {
+				$totalBawah4 = $totalBawah4->where('penjualan.id_dapur', $id_dapur);
+			}
+			$totalBawah4 = $totalBawah4->get()->row();
+			if (!$totalBawah4 || !$totalBawah4->totaljumlah) {
+				echo "<td align='center' style='background-color:#FFFFE0 ;'>-</td>";
+				echo "<td align='center' style='background-color:#FFFFE0 ;'>-</td>";
+			} else {
+				echo "<td align='center' style='background-color:#FFFFE0 ;'>" . $totalBawah4->totaljumlah . "</td>";
+				echo "<td align='center' style='background-color:#FFFFE0 ;'>Rp." . number_format($totalBawah4->totalharga, 0, ".", ".") . "</td>";
+			}
+
+			$totalBawah5 = $this->db
+				->select('SUM(jumlah) as totaljumlah, SUM(jumlah * harga) as totalharga')
+				->from('penjualan')
+				->join('produk_variant', 'penjualan.id_produk = produk_variant.id_produk_variant')
+				->where('tanggal = "' . $awal . '"+ INTERVAL 4 DAY');
+			if ($id_dapur != 0) {
+				$totalBawah5 = $totalBawah5->where('penjualan.id_dapur', $id_dapur);
+			}
+			$totalBawah5 = $totalBawah5->get()->row();
+			if (!$totalBawah5 || !$totalBawah5->totaljumlah) {
+				echo "<td align='center' style='background-color:#FFFFE0 ;'>-</td>";
+				echo "<td align='center' style='background-color:#FFFFE0 ;'>-</td>";
+			} else {
+				echo "<td align='center' style='background-color:#FFFFE0 ;'>" . $totalBawah5->totaljumlah . "</td>";
+				echo "<td align='center' style='background-color:#FFFFE0 ;'>Rp." . number_format($totalBawah5->totalharga, 0, ".", ".") . "</td>";
+			}
+
+			$totalBawah6 = $this->db
+				->select('SUM(jumlah) as totaljumlah, SUM(jumlah * harga) as totalharga')
+				->from('penjualan')
+				->join('produk_variant', 'penjualan.id_produk = produk_variant.id_produk_variant')
+				->where('tanggal = "' . $awal . '"+ INTERVAL 5 DAY');
+			if ($id_dapur != 0) {
+				$totalBawah6 = $totalBawah6->where('penjualan.id_dapur', $id_dapur);
+			}
+			$totalBawah6 = $totalBawah6->get()->row();
+			if (!$totalBawah6 || !$totalBawah6->totaljumlah) {
+				echo "<td align='center' style='background-color:#FFFFE0 ;'>-</td>";
+				echo "<td align='center' style='background-color:#FFFFE0 ;'>-</td>";
+			} else {
+				echo "<td align='center' style='background-color:#FFFFE0 ;'>" . $totalBawah6->totaljumlah . "</td>";
+				echo "<td align='center' style='background-color:#FFFFE0 ;'>Rp." . number_format($totalBawah6->totalharga, 0, ".", ".") . "</td>";
+			}
+
+			$totalBawah7 = $this->db
+				->select('SUM(jumlah) as totaljumlah, SUM(jumlah * harga) as totalharga')
+				->from('penjualan')
+				->join('produk_variant', 'penjualan.id_produk = produk_variant.id_produk_variant')
+				->where('tanggal = "' . $awal . '"+ INTERVAL 6 DAY');
+			if ($id_dapur != 0) {
+				$totalBawah7 = $totalBawah7->where('penjualan.id_dapur', $id_dapur);
+			}
+			$totalBawah7 = $totalBawah7->get()->row();
+			if (!$totalBawah7 || !$totalBawah7->totaljumlah) {
+				echo "<td align='center' style='background-color:#FFFFE0 ;'>-</td>";
+				echo "<td align='center' style='background-color:#FFFFE0 ;'>-</td>";
+			} else {
+				echo "<td align='center' style='background-color:#FFFFE0 ;'>" . $totalBawah7->totaljumlah . "</td>";
+				echo "<td align='center' style='background-color:#FFFFE0 ;'>Rp." . number_format($totalBawah7->totalharga, 0, ".", ".") . "</td>";
+			}
+
+
+
+
+			$totalAkhir = $this->db
+				->select('SUM(penjualan.jumlah) as totaljumlah, SUM(penjualan.jumlah * produk_variant.harga) as totalharga')
+				->from('penjualan')
+				->join('produk_variant', 'penjualan.id_produk = produk_variant.id_produk_variant')
+				->where('penjualan.tanggal BETWEEN "' . $awal . '" AND DATE_ADD("' . $awal . '", INTERVAL 6 DAY)', null, false);
+
+			if ($id_dapur != 0) {
+				$totalAkhir = $totalAkhir->where('penjualan.id_dapur', $id_dapur);
+			}
+
+			$totalAkhir = $totalAkhir->get()->row();
+
+			if (!$totalAkhir || !$totalAkhir->totaljumlah) {
+				echo "<td align='center' style='background-color:#FFFF99 ;'>-</td>";
+				echo "<td align='center' style='background-color:#FFFF99 ;'>-</td>";
+			} else {
+				echo "<td align='center' style='background-color:#FFFF99 ;'>" . $totalAkhir->totaljumlah . "</td>";
+				echo "<td align='center' style='background-color:#FFFF99 ;'>Rp." . number_format($totalAkhir->totalharga, 0, ".", ".") . "</td>";
+			}
+
+			?>
+		</tr>
+		</tbody>
+	</table>
 </div>

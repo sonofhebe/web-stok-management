@@ -1,3 +1,4 @@
+
 <?php
 class data_stok extends CI_Controller
 {
@@ -12,9 +13,8 @@ class data_stok extends CI_Controller
 
     public function inputsession()
     {
-        if(isset($_POST['idd']))
-        { 
-        $_SESSION["idd"]=$_POST["idd"];
+        if (isset($_POST['idd'])) {
+            $_SESSION["idd"] = $_POST["idd"];
         }
         $this->session->userdata('idd', $_POST['idd']);
         redirect(base_url('data-stok'), 'refresh');
@@ -50,18 +50,18 @@ class data_stok extends CI_Controller
                 $this->session->set_flashdata('message', '<div class="alert alert-warning" role="alert">Bahan sudah ada didalam stok dapur ini!</div>');
                 redirect(base_url('data_stok'), 'refresh');
             } else {
-            $dapur = $this->session->userdata('idd');
-            $bahan = $this->input->post('id_bahan');
+                $dapur = $this->session->userdata('idd');
+                $bahan = $this->input->post('id_bahan');
 
-            $data = array(
-                'id_dapur'   => $dapur,
-                'id_bahan'   => $bahan,
-                'tgl_input'     => date('Y-m-d H:i:s')
-            );
-            $this->datastok_model->inputstok($data);
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data berhasil di simpan !</div>');
-            redirect(base_url('data_stok'), 'refresh');
-        }
+                $data = array(
+                    'id_dapur'   => $dapur,
+                    'id_bahan'   => $bahan,
+                    'tgl_input'     => date('Y-m-d H:i:s')
+                );
+                $this->datastok_model->inputstok($data);
+                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data berhasil di simpan !</div>');
+                redirect(base_url('data_stok'), 'refresh');
+            }
         }
     }
 

@@ -20,9 +20,11 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                  <?php if ($this->session->userdata('role_id') == 1) { ?>
-                    <button class="btn btn-success btn-sm mb-2" data-toggle="modal" data-target="#tambahbahan"><i class="fas fa-plus-circel"></i>Tambah Data</button>
-                        <?php } ?>
+
+                    <?php if ($this->session->userdata('role_id') == 1) { ?>
+                        <button class="btn btn-success btn-sm mb-2" data-toggle="modal" data-target="#tambahbahan"><i class="fas fa-plus-circel"></i>Tambah Data</button>
+
+                    <?php } ?>
                     <div class="flashdata" id="flashdata" onload="clearmy()">
                         <?= $this->session->flashdata('message'); ?>
                     </div>
@@ -35,14 +37,17 @@
                                     <th>Nama</th>
                                     <th>Stok Dapur Utama</th>
                                     <th>Harga Jual</th>
-                  <?php if ($this->session->userdata('role_id') == 1) { ?>
-                                    <th>Aksi</th>
-                        <?php } ?>
+
+                                    <?php if ($this->session->userdata('role_id') == 1) { ?>
+                                        <th>Aksi</th>
+
+                                    <?php } ?>
                                 </tr>
                             </thead>
                             <tbody>
+
                                 <?php $n = 1;
-                                  foreach ($bahan as $data) { ?>
+                                foreach ($bahan as $data) { ?>
                                     <tr>
                                         <td><?= $n; ?></td>
 
@@ -93,8 +98,10 @@
                                                                                 <label for="">Kategori</label>
                                                                                 <select name="id_kategori" id="" class="form-control" required>
                                                                                     <option value="" selected disabled>-- PILIH KATEGORI --</option>
+
                                                                                     <?php foreach ($kategori as $data_k) { ?>
                                                                                         <option value="<?= $data_k->id_kategori ?>" <?= $data_k->id_kategori == $data->id_kategori ? 'selected' : '' ?>><?= $data_k->nama_kategori ?></option>
+
                                                                                     <?php } ?>
                                                                                 </select>
                                                                             </div>
@@ -117,8 +124,10 @@
                                                                                 <label for="">Satuan</label>
                                                                                 <select name="id_satuan" id="" class="form-control" required>
                                                                                     <option value="" selected disabled>-- PILIH SATUAN --</option>
+
                                                                                     <?php foreach ($satuan as $data_s) { ?>
                                                                                         <option value="<?= $data_s->id_satuan ?>" <?= $data_s->id_satuan == $data->id_satuan ? 'selected' : '' ?>><?= $data_s->nama_satuan ?></option>
+
                                                                                     <?php } ?>
                                                                                 </select>
                                                                             </div>
@@ -140,17 +149,20 @@
                                         <td><?= $data->nama_bahan ?></td>
                                         <td><?= $data->stok ?> <?= $data->nama_satuan ?></td>
                                         <td>Rp. <?= number_format($data->harga, 0, ".", ".") ?> / <?= $data->per ?> <?= $data->nama_satuan ?></td>
-                  <?php if ($this->session->userdata('role_id') == 1) { ?>
-                                        <td>
-                                            <div class="btn-group">
-                                                <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapus<?= $data->id_bahan ?>"><i class="fas fa-trash-alt"></i></button>
-                                                <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit<?= $data->id_bahan ?>"><i class="fas fa-edit"></i></button>
-                                            </div>
-                                        </td>
-                        <?php } ?>
+
+                                        <?php if ($this->session->userdata('role_id') == 1) { ?>
+                                            <td>
+                                                <div class="btn-group">
+                                                    <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapus<?= $data->id_bahan ?>"><i class="fas fa-trash-alt"></i></button>
+                                                    <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit<?= $data->id_bahan ?>"><i class="fas fa-edit"></i></button>
+                                                </div>
+                                            </td>
+
+                                        <?php } ?>
                                     </tr>
+
                                 <?php $n++;
-                                  } ?>
+                                } ?>
                             </tbody>
                         </table>
                     </div>
@@ -186,8 +198,10 @@
                                             <label for="">Kategori</label>
                                             <select name="id_kategori" id="" class="form-control" required>
                                                 <option value="" selected disabled>-- PILIH KATEGORI --</option>
+
                                                 <?php foreach ($kategori as $data_k) { ?>
                                                     <option value="<?= $data_k->id_kategori ?>"><?= $data_k->nama_kategori ?></option>
+
                                                 <?php } ?>
                                             </select>
                                         </div>
@@ -210,8 +224,10 @@
                                             <label for="">Satuan</label>
                                             <select name="id_satuan" id="" class="form-control" required>
                                                 <option value="" selected disabled>-- PILIH SATUAN --</option>
+
                                                 <?php foreach ($satuan as $data_s) { ?>
                                                     <option value="<?= $data_s->id_satuan ?>"><?= $data_s->nama_satuan ?></option>
+
                                                 <?php } ?>
                                             </select>
                                         </div>

@@ -1,3 +1,4 @@
+
 <?php
 class drop_mingguan extends CI_Controller
 {
@@ -15,10 +16,10 @@ class drop_mingguan extends CI_Controller
         $id_kategori = $this->input->post('id_kategori');
         $id_dapur = $this->input->post('id_dapur');
         $dapur = $this->dropmingguan_model->dapur($id_dapur);
-        if ($id_dapur==0) {
-        $nama_dapur = 'SEMUA DAPUR';
+        if ($id_dapur == 0) {
+            $nama_dapur = 'SEMUA DAPUR';
         } else {
-        $nama_dapur = $dapur->nama_dapur;
+            $nama_dapur = $dapur->nama_dapur;
         }
         $data = array(
             'title' => 'Cetak Laporan',
@@ -28,7 +29,7 @@ class drop_mingguan extends CI_Controller
             'nama_dapur'        => $nama_dapur,
             'bahan'        => $this->dropmingguan_model->bahan($id_kategori),
             'tanggal'        => $this->dropmingguan_model->tanggal($awal),
-            'drop'        => $this->dropmingguan_model->drop_stok($awal,$id_kategori,$id_dapur)
+            'drop'        => $this->dropmingguan_model->drop_stok($awal, $id_kategori, $id_dapur)
         );
 
         $this->load->view('template/header.php', $data);
@@ -43,10 +44,10 @@ class drop_mingguan extends CI_Controller
         $id_kategori = $this->input->post('id_kategori');
         $id_dapur = $this->input->post('id_dapur');
         $dapur = $this->dropmingguan_model->dapur($id_dapur);
-        if ($id_dapur==0) {
-        $nama_dapur = 'SEMUA DAPUR';
+        if ($id_dapur == 0) {
+            $nama_dapur = 'SEMUA DAPUR';
         } else {
-        $nama_dapur = $dapur->nama_dapur;
+            $nama_dapur = $dapur->nama_dapur;
         }
         $data = array(
             'title' => 'Cetak Laporan',
@@ -56,7 +57,7 @@ class drop_mingguan extends CI_Controller
             'nama_dapur'        => $nama_dapur,
             'bahan'        => $this->dropmingguan_model->bahan($id_kategori),
             'tanggal'        => $this->dropmingguan_model->tanggal($awal),
-            'drop'        => $this->dropmingguan_model->drop_stok($awal,$id_kategori,$id_dapur)
+            'drop'        => $this->dropmingguan_model->drop_stok($awal, $id_kategori, $id_dapur)
         );
         $this->load->view('pages/laporan/print/drop_mingguan.php', $data);
     }

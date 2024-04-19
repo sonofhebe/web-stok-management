@@ -1,3 +1,4 @@
+
 <?php
 class dapur extends CI_Controller
 {
@@ -58,10 +59,10 @@ class dapur extends CI_Controller
         $alamat = $this->input->post('alamat_dapur');
 
         $data = array(
-                'nama_dapur'          => $nama,
-                'alamat_dapur'        => $alamat,
-                'tgl_input'             => date("Y-m-d H:i:s")
-            );
+            'nama_dapur'          => $nama,
+            'alamat_dapur'        => $alamat,
+            'tgl_input'             => date("Y-m-d H:i:s")
+        );
         $this->dapur_model->editdata($data, $id);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data berhasil di edit !</div>');
         redirect(base_url('dapur'), 'refresh');

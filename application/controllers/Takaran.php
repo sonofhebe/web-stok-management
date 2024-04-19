@@ -1,3 +1,4 @@
+
 <?php
 class takaran extends CI_Controller
 {

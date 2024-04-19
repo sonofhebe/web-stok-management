@@ -1,10 +1,10 @@
  <footer class="main-footer">
-     <div class="footer-left">
-         Aira Baby Care. Copyright &copy; <?= date('Y') ?> Powered by <a href="https://www.narative.cf" target="blank">Narative</a>
-     </div>
-     <div class="footer-right">
+ 	<div class="footer-left">
+ 		Aira Baby Care. Copyright &copy; <?= date('Y') ?> Powered by <a href="https://www.narative.cf" target="blank">Narative</a>
+ 	</div>
+ 	<div class="footer-right">
 
-     </div>
+ 	</div>
  </footer>
  </div>
  </div>
@@ -40,85 +40,141 @@
 
  <!-- atur sesi muncul flashdata -->
  <script>
-     setTimeout(function() {
-         $('#flashdata').hide();
-     }, 30000);
+ 	setTimeout(function() {
+ 		$('#flashdata').hide();
+ 	}, 10000);
+
+ 	window.addEventListener('popstate', function(event) {
+ 		location.reload();
+ 	});
+
+ 	type = "submit"
+
+ 	function submitForm() {
+ 		// if ($('#id_produk').val()) {
+ 		// 	$('#tambahjadwal').modal('hide');
+ 		// }
+ 	}
+
+ 	function deleteModal() {
+ 		// $('.modal').modal('hide');
+ 	}
+
+ 	function clearme() {
+
+ 		<?php
+			if (isset($_SESSION['message'])) :
+				unset($_SESSION['message']);
+			elseif (isset($_SESSION['message'])) :
+				unset($_SESSION['message']);
+			endif;
+			?>
+ 	}
+
+
+ 	// $('.btn').on('click', function() {
+ 	// 	// Cari parent .modal
+ 	// 	var modal = $(this).closest('.modal');
+
+ 	// 	// Jika ada .modal, lanjutkan
+ 	// 	if (modal.length > 0) {
+ 	// 		// Cek apakah ada parent form
+ 	// 		var form = modal.find('form');
+
+ 	// 		// Jika ada form, lanjutkan
+ 	// 		if (form.length > 0) {
+ 	// 			// Cek validasi form
+ 	// 			if (validateForm(form)) {
+ 	// 				// Semua validasi lulus, sembunyikan modal
+ 	// 				modal.modal('hide');
+ 	// 			}
+ 	// 		} else {
+ 	// 			// Tidak ada form, langsung sembunyikan modal
+ 	// 			modal.modal('hide');
+ 	// 		}
+ 	// 	}
+ 	// });
+
+ 	// Fungsi untuk melakukan validasi form
+ 	function validateForm(form) {
+ 		var isValid = true;
+
+ 		// Loop melalui input yang memerlukan validasi
+ 		form.find('input[required]').each(function() {
+ 			if (!$(this).val()) {
+ 				isValid = false;
+ 				// alert('Harap isi semua field yang diperlukan!');
+ 				return false; // Berhenti dari loop jika ada field yang kosong
+ 			}
+ 		});
+
+ 		return isValid;
+ 	}
  </script>
+
+ <!-- datepicker -->
  <script>
-     function clearme() {
-         <?php
-            if (isset($_SESSION['message'])) :
-                unset($_SESSION['message']);
-            elseif (isset($_SESSION['message'])) :
-                unset($_SESSION['message']);
-            endif;
-            ?>
-     }
+ 	config = {
+ 		maxDate: "today",
+ 		dateFormat: "Y-m-d",
+ 		"disable": [
+ 			function(date) {
+ 				// return true to disable
+ 				return (date.getDay() === 0 || date.getDay() === 1 || date.getDay() === 2 || date.getDay() === 3 || date.getDay() === 4 || date.getDay() === 6);
+
+ 			}
+ 		],
+ 		"locale": {
+ 			"firstDayOfWeek": 1 // start week on Monday
+ 		}
+ 	}
+
+ 	config2 = {
+ 		maxDate: "today",
+ 		dateFormat: "Y-m-d",
+ 		"disable": [
+ 			function(date) {
+ 				// return true to disable
+ 				return (date.getDay() === 0 || date.getDay() === 1 || date.getDay() === 2 || date.getDay() === 3 || date.getDay() === 4 || date.getDay() === 5);
+
+ 			}
+ 		],
+ 		"locale": {
+ 			"firstDayOfWeek": 1 // start week on Monday
+ 		}
+ 	}
+
+ 	flatpickr("input[type=dategate]", config);
+ 	flatpickr("input[type=dategate2]", config2);
  </script>
 
-<!-- datepicker -->
-<script>
-config = {
-    maxDate: "today",
-    dateFormat: "Y-m-d",
-    "disable": [
-        function(date) {
-            // return true to disable
-            return (date.getDay() === 0 || date.getDay() === 1 || date.getDay() === 2 || date.getDay() === 3 || date.getDay() === 4 || date.getDay() === 6);
+ <script>
+ 	$(".date")
+ 		.datepicker({
+ 			onSelect: function(dateText) {
+ 				console.log("Selected date: " + dateText + "; input's current value: " + this.value);
+ 				$(this).change();
+ 			}
+ 		})
+ 		.on("change", function() {
+ 			console.log("Got change event from field");
+ 		});
 
-        }
-    ],
-    "locale": {
-        "firstDayOfWeek": 1 // start week on Monday
-    }
-}
-
-config2 = {
-    maxDate: "today",
-    dateFormat: "Y-m-d",
-    "disable": [
-        function(date) {
-            // return true to disable
-            return (date.getDay() === 0 || date.getDay() === 1 || date.getDay() === 2 || date.getDay() === 3 || date.getDay() === 4 || date.getDay() === 5);
-
-        }
-    ],
-    "locale": {
-        "firstDayOfWeek": 1 // start week on Monday
-    }
-}
-
-flatpickr("input[type=dategate]", config);
-flatpickr("input[type=dategate2]", config2);
-</script>
-
-<script>
-        $(".date")
-.datepicker({
-    onSelect: function(dateText) {
-        console.log("Selected date: " + dateText + "; input's current value: " + this.value);
-        $(this).change();
-    }
-})
-.on("change", function() {
-    console.log("Got change event from field");
-});
-
-$("#bulan").datepicker( {
-    format: "mm-yyyy",
-    viewMode: "months", 
-    minViewMode: "months"
-});
-                            </script>
+ 	$("#bulan").datepicker({
+ 		format: "mm-yyyy",
+ 		viewMode: "months",
+ 		minViewMode: "months"
+ 	});
+ </script>
 
  <!-- script datatbles -->
  <script>
-     $(document).ready(function() {
-         $('#table').DataTable();
-     });
+ 	$(document).ready(function() {
+ 		$('#table').DataTable();
+ 	});
  </script>
 
- 
+
 
 
  <!--

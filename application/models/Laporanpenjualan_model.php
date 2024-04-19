@@ -1,3 +1,4 @@
+
 <?php
 class laporanpenjualan_model extends CI_Model
 {

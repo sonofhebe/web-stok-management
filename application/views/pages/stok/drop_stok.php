@@ -15,39 +15,47 @@
               <div class="col-lg-12">
                   <div class="card">
                       <div class="card-body">
-                      <div class="col-lg-4">
-                      <?php if ($this->session->userdata('role_id') == 1) { ?>
-                      <div class="form-group">
-                            <form action="<?= base_url('drop-stok') ?>" method="post" enctype="multipart/form-data">
-                                <label for="tgl">Tanggal</label>
-                                <input name="tanggal" id="tgl" value="<?= $tgl ?>" class="form-control" type="date"> 
-                                <button class="btn btn-primary btn-sm" type="submit"><i class="fas fa-search"></i></button>
-                            </form>
-                            </div>
-                      <?php } else if ($this->session->userdata('role_id') == 2) { ?>
-                      <div class="form-group">
-                            <form action="<?= base_url('bahan-masuk') ?>" method="post" enctype="multipart/form-data">
-                                <label for="tgl">Tanggal</label>
-                                <input name="tanggal" id="tgl" value="<?= $tgl ?>" class="form-control" type="date"> 
-                                <button class="btn btn-primary btn-sm" type="submit"><i class="fas fa-search"></i></button>
-                            </form>
-                            </div>
-                        <?php } ?>
-                      </div>
-                      <?php if ($this->session->userdata('role_id') == 1) { ?>
-                      <button class="btn btn-success btn-sm mb-2" data-toggle="modal" data-target="#tambahmasuk"><i class="fas fa-plus-circel"></i>Drop Stok Manual</button>
-                        <?php $this->db->where('status = "Tunggu"');
-                            $notif = $this->db->get('req')->num_rows();
-                            ?>
-                            <?php if ($notif > 0) { ?>
-                                <button class="btn btn-danger btn-sm mb-2" onclick="document.location='<?= base_url('request') ?>'">Lihat Request : <?= $notif ?></button>
-                                <?php } ?>
-                        <?php } ?>
+                          <div class="col-lg-4">
+
+                              <?php if ($this->session->userdata('role_id') == 1) { ?>
+                                  <div class="form-group">
+                                      <form action="<?= base_url('drop-stok') ?>" method="post" enctype="multipart/form-data">
+                                          <label for="tgl">Tanggal</label>
+                                          <input name="tanggal" id="tgl" value="<?= $tgl ?>" class="form-control" type="date">
+                                          <button class="btn btn-primary btn-sm" type="submit"><i class="fas fa-search"></i></button>
+                                      </form>
+                                  </div>
+
+                              <?php } else if ($this->session->userdata('role_id') == 2) { ?>
+                                  <div class="form-group">
+                                      <form action="<?= base_url('bahan-masuk') ?>" method="post" enctype="multipart/form-data">
+                                          <label for="tgl">Tanggal</label>
+                                          <input name="tanggal" id="tgl" value="<?= $tgl ?>" class="form-control" type="date">
+                                          <button class="btn btn-primary btn-sm" type="submit"><i class="fas fa-search"></i></button>
+                                      </form>
+                                  </div>
+
+                              <?php } ?>
+                          </div>
+
+                          <?php if ($this->session->userdata('role_id') == 1) { ?>
+                              <button class="btn btn-success btn-sm mb-2" data-toggle="modal" data-target="#tambahmasuk"><i class="fas fa-plus-circel"></i>Drop Stok Manual</button>
+
+                              <?php $this->db->where('status = "Tunggu"');
+                                $notif = $this->db->get('req')->num_rows();
+                                ?>
+
+                              <?php if ($notif > 0) { ?>
+                                  <button class="btn btn-danger btn-sm mb-2" onclick="document.location='<?= base_url('request') ?>'">Lihat Request : <?= $notif ?></button>
+
+                              <?php } ?>
+
+                          <?php } ?>
 
                           <div class="flashdata" id="flashdata" onload="clearmy()">
                               <?= $this->session->flashdata('message'); ?>
                           </div>
-                          
+
                           <div class="table-responsive">
                               <table id="table" class="table table-bordered text-center" style="width:100%">
                                   <thead>
@@ -58,12 +66,15 @@
                                           <th>Jumlah</th>
                                           <th>Total Harga</th>
                                           <th>Tanggal</th>
-                      <?php if ($this->session->userdata('role_id') == 1) { ?>
-                                          <th>Aksi</th>
-                        <?php } ?>
+
+                                          <?php if ($this->session->userdata('role_id') == 1) { ?>
+                                              <th>Aksi</th>
+
+                                          <?php } ?>
                                       </tr>
                                   </thead>
                                   <tbody>
+
                                       <?php $n = 1;
                                         foreach ($data_masuk as $masuk) { ?>
                                           <tr>
@@ -73,11 +84,13 @@
                                               <td><?= $masuk->jumlah ?> <?= $masuk->nama_satuan ?></td>
                                               <td>Rp. <?= number_format($masuk->total_harga, 0, ".", ".") ?></td>
                                               <td><?= $masuk->tanggal ?></td>
-                      <?php if ($this->session->userdata('role_id') == 1) { ?>
-                                              <td>
-                                                  <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapus<?= $masuk->id_drop_stok ?>"><i class="fas fa-trash-alt"></i></button>
-                                              </td>
-                        <?php } ?>
+
+                                              <?php if ($this->session->userdata('role_id') == 1) { ?>
+                                                  <td>
+                                                      <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapus<?= $masuk->id_drop_stok ?>"><i class="fas fa-trash-alt"></i></button>
+                                                  </td>
+
+                                              <?php } ?>
 
                                               <!-- Modal Hapus -->
                                               <div class="modal fade" id="hapus<?= $masuk->id_drop_stok ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -102,6 +115,7 @@
                                                   </div>
                                               </div>
                                           </tr>
+
                                       <?php $n++;
                                         } ?>
                                   </tbody>
@@ -127,12 +141,14 @@
                           <div class="rpw">
                               <div class="col-lg-12">
                                   <form action="<?= base_url('tambah-drop-stok') ?>" method="post" enctype="multipart/form-data">
-                                  <div class="form-group">
+                                      <div class="form-group">
                                           <label for="pk">Pilih Dapur</label>
                                           <select name="id_dapur" id="ds" class="form-control" required>
                                               <option value="" selected disabled>-- PILIH DAPUR --</option>
+
                                               <?php foreach ($dapur as $dpr) { ?>
                                                   <option value="<?= $dpr->id_dapur ?>"><?= $dpr->nama_dapur ?></option>
+
                                               <?php } ?>
                                           </select>
                                       </div>
@@ -140,8 +156,10 @@
                                           <label for="pk">Pilih Bahan</label>
                                           <select name="id_bahan" id="ds" class="form-control" required>
                                               <option value="" selected disabled>-- PILIH BAHAN --</option>
+
                                               <?php foreach ($bahan as $bhn) { ?>
                                                   <option value="<?= $bhn->id_bahan ?>"><?= $bhn->nama_kategori ?> : <?= $bhn->nama_bahan ?> (<?= $bhn->nama_satuan ?>)</option>
+
                                               <?php } ?>
                                           </select>
                                       </div>

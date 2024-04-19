@@ -1,3 +1,4 @@
+
 <?php
 class stokcabang_model extends CI_Model
 {

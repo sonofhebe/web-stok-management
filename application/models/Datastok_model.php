@@ -1,3 +1,4 @@
+
 <?php
 class datastok_model extends CI_Model
 {
@@ -16,7 +17,7 @@ class datastok_model extends CI_Model
         $this->db->join('satuan', 'satuan.id_satuan=bahan.id_satuan');
         return $this->db->get('stok')->result();
     }
-    
+
     public function getbahan()
     {
         $this->db->order_by('bahan.id_satuan', 'DESC');
@@ -29,7 +30,7 @@ class datastok_model extends CI_Model
     {
         $this->db->insert('stok', $data);
     }
-    
+
     public function cekId($dapur, $bahan)
     {
         $this->db->where('id_dapur', $dapur);

@@ -1,0 +1,25 @@
+========= Database
+add harga to produk -> Ok
+add packaging table -> Ok
+add packaging_detail table -> Ok
+add resep_detail table -> Ok
+edit resep db -> Ok
+
+========= Data produk dan resep
+edit halaman data_produk
+edit halaman data_resep
+add halaman data_resep_detail
+add halaman data_packaging
+add halaman data_packaging_detail
+delete takaran
+
+========= Pemakaian packaging di penjualan produk
+edit halaman penjualan
+
+========= Pemakaian bahan otomatis tarik resep
+edit halaman pemakaian
+
+========= Stok sebelumnya pada laporan
+edit drop_stok table, delete cpsa column
+edit pemakaian db add last_stock
+edit laporan select last/max last_stock before periode, if null select from stock, if null -

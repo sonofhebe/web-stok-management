@@ -1,3 +1,4 @@
+
 <?php
 /**
  * CodeIgniter
@@ -35,7 +36,7 @@
  * @since	Version 1.0.0
  * @filesource
  */
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  * CodeIgniter Array Helpers
@@ -49,8 +50,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 // ------------------------------------------------------------------------
 
-if ( ! function_exists('element'))
-{
+if (!function_exists('element')) {
 	/**
 	 * Element
 	 *
@@ -70,8 +70,7 @@ if ( ! function_exists('element'))
 
 // ------------------------------------------------------------------------
 
-if ( ! function_exists('random_element'))
-{
+if (!function_exists('random_element')) {
 	/**
 	 * Random Element - Takes an array as input and returns a random element
 	 *
@@ -86,8 +85,7 @@ if ( ! function_exists('random_element'))
 
 // --------------------------------------------------------------------
 
-if ( ! function_exists('elements'))
-{
+if (!function_exists('elements')) {
 	/**
 	 * Elements
 	 *
@@ -103,10 +101,9 @@ if ( ! function_exists('elements'))
 	{
 		$return = array();
 
-		is_array($items) OR $items = array($items);
+		is_array($items) or $items = array($items);
 
-		foreach ($items as $item)
-		{
+		foreach ($items as $item) {
 			$return[$item] = array_key_exists($item, $array) ? $array[$item] : $default;
 		}
 

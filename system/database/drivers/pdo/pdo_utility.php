@@ -1,3 +1,4 @@
+
 <?php
 /**
  * CodeIgniter
@@ -35,7 +36,7 @@
  * @since	Version 2.1.0
  * @filesource
  */
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  * PDO Utility Class
@@ -46,7 +47,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @author		EllisLab Dev Team
  * @link		https://codeigniter.com/database/
  */
-class CI_DB_pdo_utility extends CI_DB_utility {
+class CI_DB_pdo_utility extends CI_DB_utility
+{
 
 	/**
 	 * Export
@@ -59,5 +61,4 @@ class CI_DB_pdo_utility extends CI_DB_utility {
 		// Currently unsupported
 		return $this->db->display_error('db_unsupported_feature');
 	}
-
 }

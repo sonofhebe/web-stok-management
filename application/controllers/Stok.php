@@ -1,3 +1,4 @@
+
 <?php
 class stok extends CI_Controller
 {

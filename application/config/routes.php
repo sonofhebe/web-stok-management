@@ -1,3 +1,4 @@
+
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
@@ -110,6 +111,26 @@ $route['data-produk'] = 'Produk/index';
 $route['tambah-produk'] = 'Produk/tambahproduk';
 $route['hapus-produk/(:any)'] = 'Produk/hapusproduk/$1';
 $route['edit-produk/(:any)'] = 'Produk/editproduk/$1';
+//variant
+$route['data-produk/tambah-variant'] = 'Produk/tambahvariant';
+$route['data-produk/hapus-variant/(:any)/(:any)'] = 'Produk/hapusvariant/$1/$2';
+$route['data-produk/edit-variant/(:any)/(:any)'] = 'Produk/editvariant/$1/$2';
+$route['data-produk/variant/(:any)'] = 'Produk/variant/$1';
+//packaging
+$route['data-produk/variant/packaging/tambah'] = 'Produk/tambahprodukpackaging';
+$route['data-produk/variant/packaging/hapus/(:any)/(:any)'] = 'Produk/hapusprodukpackaging/$1/$2';
+$route['data-produk/variant/packaging/edit/(:any)/(:any)'] = 'Produk/editprodukpackaging/$1/$2';
+$route['data-produk/variant/packaging/(:any)'] = 'Produk/produkpackaging/$1';
+//Resep
+$route['data-produk/resep/tambah'] = 'Produk/tambahresep';
+$route['data-produk/resep/hapus/(:any)/(:any)'] = 'Produk/hapusprodukresep/$1/$2';
+$route['data-produk/resep/edit/(:any)/(:any)'] = 'Produk/editprodukresep/$1/$2';
+$route['data-produk/resep/(:any)'] = 'Produk/resep/$1';
+//Resep Detail
+$route['data-produk/resep/detail/tambah'] = 'Produk/tambahresepdetail';
+$route['data-produk/resep/detail/hapus/(:any)/(:any)'] = 'Produk/hapusprodukresepdetail/$1/$2';
+$route['data-produk/resep/detail/edit/(:any)/(:any)'] = 'Produk/editprodukresepdetail/$1/$2';
+$route['data-produk/resep/detail/(:any)'] = 'Produk/resepdetail/$1';
 
 //data-bahan
 $route['data-bahan'] = 'bahan/index';

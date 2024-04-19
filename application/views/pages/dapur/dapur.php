@@ -35,6 +35,7 @@
                                       </tr>
                                   </thead>
                                   <tbody>
+
                                       <?php $n = 1;
                                         foreach ($dapur as $dataP) { ?>
                                           <tr>
@@ -129,6 +130,7 @@
                                                   </div>
                                               </td>
                                           </tr>
+
                                       <?php $n++;
                                         } ?>
                                   </tbody>

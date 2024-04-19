@@ -11,18 +11,22 @@
         </div>
     </section>
 
-</script>
+    </script>
 
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                        <?php foreach ($produk as $data) { ?>
-                            <h5>Resep Produk <br>"<?= $data->nama_produk ?>"</h5>
-                        <?php } ?>
-                  <?php if ($this->session->userdata('role_id') == 1) { ?>
-                    <button class="btn btn-success btn-sm mb-2" data-toggle="modal" data-target="#tambahresep"><i class="fas fa-plus-circel"></i>Tambah Resep</button>
-                        <?php } ?>
+
+                    <?php foreach ($produk as $data) { ?>
+                        <h5>Resep Produk <br>"<?= $data->nama_produk ?>"</h5>
+
+                    <?php } ?>
+
+                    <?php if ($this->session->userdata('role_id') == 1) { ?>
+                        <button class="btn btn-success btn-sm mb-2" data-toggle="modal" data-target="#tambahresep"><i class="fas fa-plus-circel"></i>Tambah Resep</button>
+
+                    <?php } ?>
                     <div class="flashdata" id="flashdata" onload="clearmy()">
                         <?= $this->session->flashdata('message'); ?>
                     </div>
@@ -35,14 +39,17 @@
                                     <th>Takaran/Bahan</th>
                                     <th>Jumlah Per SC</th>
                                     <th>Satuan</th>
-                  <?php if ($this->session->userdata('role_id') == 1) { ?>
-                                    <th>Aksi</th>
-                        <?php } ?>
+
+                                    <?php if ($this->session->userdata('role_id') == 1) { ?>
+                                        <th>Aksi</th>
+
+                                    <?php } ?>
                                 </tr>
                             </thead>
                             <tbody>
+
                                 <?php $n = 1;
-                                  foreach ($resep as $data) { ?>
+                                foreach ($resep as $data) { ?>
                                     <tr>
                                         <td><?= $n; ?></td>
 
@@ -82,37 +89,40 @@
                                                         <div class="row">
                                                             <div class="col-lg-12">
                                                                 <form action="<?= base_url('edit-resep/') . $data->id_resep ?>" method="post" enctype="multipart/form-data">
-                                                                <label for="">Takaran/Bahan</label>
+                                                                    <label for="">Takaran/Bahan</label>
                                                                     <input type="text" name="nama_produk" class="form-control" value="<?= $data->nama_takaran ?>" disabled>
                                                                     <div class="form-group">
-                                                                <label for="">Jumlah Per SC</label>
-                                                                    <input type="number" name="jumlah" value="<?= $data->jumlah ?>" class="form-control" required>
+                                                                        <label for="">Jumlah Per SC</label>
+                                                                        <input type="number" name="jumlah" value="<?= $data->jumlah ?>" class="form-control" required>
                                                                     </div>
-                                                                </div>
-                                                                <div class="modal-footer">    
-                                                                <button class="btn btn-success btn-sm" type="submit">Simpan</button>
-                                                                </div>
-                                                            </form>
                                                             </div>
+                                                            <div class="modal-footer">
+                                                                <button class="btn btn-success btn-sm" type="submit">Simpan</button>
+                                                            </div>
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
                                         <td><?= $data->nama_kategori ?></td>
                                         <td><?= $data->nama_takaran ?></td>
                                         <td><?= $data->jumlah ?></td>
                                         <td><?= $data->nama_satuan ?></td>
-                  <?php if ($this->session->userdata('role_id') == 1) { ?>
-                                        <td>
-                                            <div class="btn-group">
-                                                <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapus<?= $data->id_resep ?>"><i class="fas fa-trash-alt"></i></button>
-                                                <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit<?= $data->id_resep ?>"><i class="fas fa-edit"></i></button>
-                                            </div>
-                                        </td>
-                        <?php } ?>
+
+                                        <?php if ($this->session->userdata('role_id') == 1) { ?>
+                                            <td>
+                                                <div class="btn-group">
+                                                    <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapus<?= $data->id_resep ?>"><i class="fas fa-trash-alt"></i></button>
+                                                    <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit<?= $data->id_resep ?>"><i class="fas fa-edit"></i></button>
+                                                </div>
+                                            </td>
+
+                                        <?php } ?>
                                     </tr>
+
                                 <?php $n++;
-                                  } ?>
+                                } ?>
                             </tbody>
                         </table>
                     </div>
@@ -134,26 +144,28 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                            <form action="<?= base_url('tambah-resep')?>" method="post" enctype="multipart/form-data">
-                                    <input type="hidden" name="id_produk" class="form-control" value="<?= $data->id_produk ?>">
-                                        <div class="form-group">
-                                            <label for="">Takaran/Bahan</label>
-                                            <select name="id_takaran" id="" class="form-control" required>
-                                                <option value="" selected disabled>-- PILIH TAKARAN --</option>
-                                                <?php foreach ($takaran as $data_b) { ?>]
-                                                    <option value="<?= $data_b->id_takaran ?>"><?= $data_b->nama_kategori ?> : <?= $data_b->nama_takaran?></option>
-                                                <?php } ?>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="">Jumlah Per SC</label>
-                                            <input type="number" name="jumlah" class="form-control" required>
-                                        </div>
+                    <form action="<?= base_url('tambah-resep') ?>" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="id_produk" class="form-control" value="<?= $data->id_produk ?>">
+                        <div class="form-group">
+                            <label for="">Takaran/Bahan</label>
+                            <select name="id_takaran" id="" class="form-control" required>
+                                <option value="" selected disabled>-- PILIH TAKARAN --</option>
+
+                                <?php foreach ($takaran as $data_b) { ?>]
+                                <option value="<?= $data_b->id_takaran ?>"><?= $data_b->nama_kategori ?> : <?= $data_b->nama_takaran ?></option>
+
+                            <?php } ?>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Jumlah Per SC</label>
+                            <input type="number" name="jumlah" class="form-control" required>
+                        </div>
                 </div>
-                                        <div class="modal-footer">    
-                                        <button class="btn btn-success btn-sm" type="submit">Simpan</button>
-                                        </div>
-                            </form>
+                <div class="modal-footer">
+                    <button class="btn btn-success btn-sm" type="submit">Simpan</button>
+                </div>
+                </form>
             </div>
         </div>
     </div>

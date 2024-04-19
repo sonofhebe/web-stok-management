@@ -1,3 +1,4 @@
+
 <?php
 class User_model extends CI_Model
 {
@@ -11,7 +12,7 @@ class User_model extends CI_Model
         $this->db->order_by('id_user', 'DESC');
         return $this->db->get('users')->result();
     }
-    
+
     public function cekuser($username)
     {
         $this->db->where('username', $username);

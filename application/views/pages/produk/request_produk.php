@@ -23,9 +23,11 @@
                           Data Request Produk
                       </di>
                       <div class="card-body">
+
                           <?php if ($this->session->userdata('role_id') == 4 || $this->session->userdata('role_id') == 1) { ?>
                               <!-- jika role id user yang login == 4 atau gudang maka tampilkan button tambah request -->
                               <button class="btn btn-success btn-sm mb-2" data-toggle="modal" data-target="#tambah-data "><i class="fas fa-plus-circel"></i>Tambah Data</button>
+
                           <?php } ?>
                           <div class="flashdata" id="flashdata" onload="clearmy()">
                               <?= $this->session->flashdata('message'); ?>
@@ -51,6 +53,7 @@
 
                                   </thead>
                                   <tbody>
+
                                       <?php $n = 1;
                                         foreach ($request as $r) { ?>
                                           <tr>
@@ -58,18 +61,25 @@
                                               <td>
 
                                                   <div class="btn-group">
+
                                                       <?php if ($this->session->userdata('role_id') != 3) { ?>
                                                           <!-- jika role id user == 4 atau gudang tampilkan button ini -->
                                                           <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapus<?= $r->id_request_produk ?>"><i class="fas fa-trash-alt"></i></button>
                                                           <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit<?= $r->id_request_produk ?>"><i class="fas fa-edit"></i></button>
+
                                                       <?php } ?>
+
                                                       <?php if ($this->session->userdata('role_id') != 4 && $r->status != 5) { ?>
                                                           <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#konfirmasi<?= $r->id_request_produk ?>"><i class="fas fa-check-circle"></i> Konfirmasi</button>
+
                                                       <?php } else if ($this->session->userdata('role_id') == 1) { ?>
                                                           <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#konfirmasi<?= $r->id_request_produk ?>"><i class="fas fa-check-circle"></i> Konfirmasi</button>
+
                                                       <?php } ?>
+
                                                       <?php if ($r->status == 4 && $this->session->userdata('role_id') == 4) { ?>
                                                           <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#konfirmasi<?= $r->id_request_produk ?>"><i class="fas fa-check-circle"></i> Konfirmasi</button>
+
                                                       <?php } ?>
                                                   </div>
 
@@ -124,6 +134,7 @@
                                                                       </p>
                                                                   </div>
                                                                   <form action="<?= base_url('update-status/') . $r->id_request_produk ?>" method="post" enctype="multipart/form-data">
+
                                                                       <?php if ($this->session->userdata('role_id') != 4) { ?>
                                                                           <div class="form-group">
                                                                               <label for="stkr""><b>Konfirmasi Request</b></label>
@@ -134,11 +145,14 @@
                                                                                   <option value="2" <?= $r->status == '2' ? 'selected' : '' ?>>Dikonfirmasi</option>
                                                                                   <option value="3" <?= $r->status == '3' ? 'selected' : '' ?>>Menunggu Dikirim</option>
                                                                                   <option value="4" <?= $r->status == '4' ? 'selected' : '' ?>>Dikirim</option>
+
                                                                                   <?php if ($this->session->userdata('role_id') == 1) { ?>
                                                                                       <option value="5" <?= $r->status == '5' ? 'selected' : '' ?>>Diterima</option>
+
                                                                                   <?php } ?>
                                                                                   </select>
                                                                           </div>
+
                                                                       <?php } else if ($this->session->userdata('role_id') == 4 && $r->status == 4) { ?>
                                                                           <div class="form-group">
                                                                               <label for="stkr""><b>Konfirmasi Request</b></label>
@@ -147,6 +161,7 @@
                                                                                   <option value="5" <?= $r->status == '5' ? 'selected' : '' ?>>Diterima</option>
                                                                                   </select>
                                                                           </div>
+
                                                                       <?php } ?>
                                                                       <div class="form-group">
                                                                           <button class="btn btn-success btn-sm" type="submit">Simpan</button>
@@ -181,8 +196,10 @@
                                                                               <label for="">Data Produk</label>
                                                                               <select name="id_produk" id="" class="form-control">
                                                                                   <option value="" selected disabled>-- PILIH PRODUK --</option>
+
                                                                                   <?php foreach ($produk as $dp) { ?>
                                                                                       <option value="<?= $dp->id_produk ?>" <?= $dp->id_produk == $r->id_produk ? 'selected' : '' ?>><?= $dp->nama_produk ?> | <?= $dp->kode_produk ?></option>
+
                                                                                   <?php } ?>
                                                                               </select>
                                                                           </div>
@@ -190,8 +207,10 @@
                                                                               <label for="">Data Produk</label>
                                                                               <select name="id_pemasok" id="" class="form-control">
                                                                                   <option value="" selected disabled>-- PILIH PEMASOK --</option>
+
                                                                                   <?php foreach ($pemasok as $pp) { ?>
                                                                                       <option value="<?= $pp->id_produk ?>" <?= $pp->id_produk == $r->id_produk ? 'selected' : '' ?>><?= $pp->nama_pemasok ?> | <?= $pp->nama_produk ?> - <?= $pp->kode_produk ?></option>
+
                                                                                   <?php } ?>
                                                                               </select>
                                                                           </div>
@@ -229,6 +248,7 @@
                                                   <?= $r->tanggal_kirim ?>
                                               </td>
                                               <td>
+
                                                   <?php
 
                                                     if ($r->status == 0) {
@@ -250,6 +270,7 @@
                                                     ?>
                                               </td>
                                           </tr>
+
                                       <?php $n++;
                                         } ?>
                                   </tbody>
@@ -278,8 +299,10 @@
                                           <label for="">Data Produk</label>
                                           <select name="id_produk" id="" class="form-control">
                                               <option value="" selected disabled>-- PILIH PRODUK --</option>
+
                                               <?php foreach ($produk as $dp) { ?>
                                                   <option value="<?= $dp->id_produk ?>"><?= $dp->nama_produk ?> | <?= $dp->kode_produk ?></option>
+
                                               <?php } ?>
                                           </select>
                                       </div>
@@ -287,8 +310,10 @@
                                           <label for="">Data Produk</label>
                                           <select name="id_pemasok" id="" class="form-control">
                                               <option value="" selected disabled>-- PILIH PEMASOK --</option>
+
                                               <?php foreach ($pemasok as $pp) { ?>
                                                   <option value="<?= $pp->id_produk ?>"><?= $pp->nama_pemasok ?> | <?= $pp->nama_produk ?> - <?= $pp->kode_produk ?></option>
+
                                               <?php } ?>
                                           </select>
                                       </div>

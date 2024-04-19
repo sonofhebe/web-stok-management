@@ -1,3 +1,4 @@
+
 <?php
 class dataresep_model extends CI_Model
 {
@@ -6,7 +7,7 @@ class dataresep_model extends CI_Model
         $this->db->where('id_produk', $this->session->userdata('idp'));
         return $this->db->get('produk')->result();
     }
-    
+
     public function gettakaran()
     {
         $this->db->order_by('bahan.id_kategori, nama_bahan', 'ASC');
@@ -31,14 +32,14 @@ class dataresep_model extends CI_Model
     {
         $this->db->insert('resep', $data);
     }
-    
+
     public function cekId($takaran, $produk)
     {
         $this->db->where('id_takaran', $takaran);
         $this->db->where('id_produk', $produk);
         return $this->db->get('resep')->row();
     }
-    
+
     public function bahan($takaran)
     {
         $this->db->where('id_takaran', $takaran);
