@@ -21,7 +21,9 @@
       								<input type="date" value="<?= $tgl ?>" name="tanggal" id="tgl" class="form-control" max="<?= date('Y-m-d'); ?>">
       							</form>
       						</div>
-      						<button class="btn btn-success btn-sm mb-2" data-toggle="modal" data-target="#tambahkeluar"><i class="fas fa-plus-circel"></i>Buat Laporan</button>
+      						<?php if ($this->session->userdata('role_id') != 1) { ?>
+      							<button class="btn btn-success btn-sm mb-2" data-toggle="modal" data-target="#tambahkeluar"><i class="fas fa-plus-circel"></i>Buat Laporan</button>
+      						<?php } ?>
       					</div>
       				</div>
       				<div class="flashdata" id="flashdata" onload="clearmy()">

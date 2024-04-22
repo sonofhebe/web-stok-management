@@ -113,9 +113,11 @@ class stok_rusak extends CI_Controller
 		$dataRusak = $this->db->where('id_stok_rusak', $id)->get('stok_rusak')->result()[0];
 		$delete = $this->db->where('id_stok_rusak', $id)->delete('stok_rusak');
 		if ($delete) {
-			$stok = $this->db->where('id_dapur', $dataRusak->id_dapur)->where('id_bahan', $dataRusak->id_bahan);
-			$newJumlah = $stok->get('stok')->result()[0]->jumlah + $dataRusak->jumlah;
-			$this->db->where('id_dapur', $dataRusak->id_dapur)->where('id_bahan', $dataRusak->id_bahan)->set(['jumlah' => $newJumlah])->update('stok');
+			if ($dataRusak->status == 2) {
+				$stok = $this->db->where('id_dapur', $dataRusak->id_dapur)->where('id_bahan', $dataRusak->id_bahan);
+				$newJumlah = $stok->get('stok')->result()[0]->jumlah + $dataRusak->jumlah;
+				$this->db->where('id_dapur', $dataRusak->id_dapur)->where('id_bahan', $dataRusak->id_bahan)->set(['jumlah' => $newJumlah])->update('stok');
+			}
 		}
 
 		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data berhasil di hapus!</div>');
