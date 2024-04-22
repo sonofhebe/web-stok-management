@@ -17,10 +17,10 @@
       				<div class="card-body">
       					<div class="col-lg-3">
       						<div class="form-group">
-      							<form action="<?= base_url('pemakaian') ?>" method="post" enctype="multipart/form-data">
+      							<form id="tglForm" action="<?= base_url('pemakaian') ?>" method="post" enctype="multipart/form-data">
       								<label for="tgl">Tanggal</label>
       								<input type="date" value="<?= $tgl ?>" name="tanggal" id="tgl" class="form-control" max="<?= date('Y-m-d'); ?>">
-      								<button class="btn btn-primary btn-sm" type="submit"><i class="fas fa-search"></i></button>
+      								<!-- <button class="btn btn-primary btn-sm" type="submit"><i class="fas fa-search"></i></button> -->
       							</form>
       						</div>
       						<button class="btn btn-success btn-sm mb-2" data-toggle="modal" data-target="#tambahkeluar"><i class="fas fa-plus-circel"></i>Tambah Pemakaian Bahan</button>
@@ -138,3 +138,8 @@
       	</div>
 
       </div>
+      <script>
+      	$('#tgl').on('change', function() {
+      		$('#tglForm').submit();
+      	});
+      </script>

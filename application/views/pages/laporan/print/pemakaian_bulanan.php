@@ -17,8 +17,10 @@ header("Content-Disposition: attachment; filename=pemakaian-bulanan-$nama_dapur-
 				<th rowspan="2">STOK AWAL</th>
 				<th rowspan="2">STOK MASUK</th>
 				<th rowspan="2">TOTAL STOK</th>
+				<th rowspan="2">STOK RUSAK</th>
 				<th colspan="31">PENGGUNAAN BAHAN</th>
 				<th rowspan="2">TOTAL PEMAKAIAN</th>
+				<th rowspan="2">STOK AKHIR</th>
 			</tr>
 			<tr>
 
@@ -88,12 +90,36 @@ header("Content-Disposition: attachment; filename=pemakaian-bulanan-$nama_dapur-
 
 					// Menghitung stok awal
 					$stokAwal = $sumDropStok - $sumPemakaian; ?>
+
+					<!-- get stok rusak -->
+					<?php
+					$this->db->select_sum('jumlah');
+					if ($id_dapur == 0) {
+						$this->db->join('bahan', 'bahan.id_bahan=stok_rusak.id_bahan');
+					} else {
+						$this->db->join('bahan', 'bahan.id_bahan=stok_rusak.id_bahan');
+						$this->db->where('id_dapur ="' . $id_dapur . '"');
+					}
+					$this->db->where('bahan.id_kategori ="' . $id_kategori . '"');
+					$this->db->where('stok_rusak.id_bahan', $ds->id_bahan);
+					$this->db->where('stok_rusak.status', 2);
+					$this->db->where("DATE_FORMAT(tanggal,'%Y-%m')", $bulan);
+					$tot = $this->db->get('stok_rusak')->result();
+					foreach ($tot as $t) {
+						if (!$t->jumlah) {
+							$stokRusak = 0;
+						} else {
+							$stokRusak = $t->jumlah;
+						}
+					} ?>
+
 					<!-- END GET STOK AWAL -->
 
 
 					<td align='center'><?= $stokAwal ?></td>
 					<td align='center'><?= $masuk ?></td>
 					<td align='center'><?= $stokAwal + $masuk ?></td>
+					<td align='center'><?= $stokRusak ?></td>
 					<!-- PEMAKAIAN -->
 
 					<?php
@@ -148,11 +174,16 @@ header("Content-Disposition: attachment; filename=pemakaian-bulanan-$nama_dapur-
 						<?php
 						foreach ($tot as $t) {
 							if (!$t->jumlah) {
-								echo "-";
+								$totalPemakaian = 0;
+								echo 0;
 							} else {
+								$totalPemakaian = $t->jumlah;
 								echo $t->jumlah;
 							}
 						} ?> </td>
+
+					<!-- total stok akhir -->
+					<td align='center'><?= ($stokAwal + $masuk) - $stokRusak - $totalPemakaian ?></td>
 			</tr>
 
 		<?php $n++;

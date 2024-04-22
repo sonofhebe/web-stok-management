@@ -59,8 +59,9 @@
   						</li>
 
 
-  						<?php $this->db->where('status = "Tunggu"');
-							$notif = $this->db->get('req')->num_rows();
+  						<?php
+							$notif_req = $this->db->where('status = "Tunggu"')->get('req')->num_rows();
+							$notif_rusak = $this->db->where('status', 1)->get('stok_rusak')->num_rows();
 							?>
   						<li class="menu-header">Manajemen Stok</li>
   						<li class="<?= $this->uri->segment('1') == 'stok' ? 'active' : '' ?>"><a class="nav-link" href="<?= base_url('stok') ?>"><i class="fas fa-server"></i>
@@ -70,8 +71,15 @@
   						<li class="<?= $this->uri->segment('1') == 'request' || $this->uri->segment('1') == 'request-' ? 'active' : '' ?>"><a class="nav-link" href="<?= base_url('request'); ?>"><i class="fas fa-envelope"></i>
   								<span>Request Bahan</span>
 
-  								<?php if ($notif > 0) { ?>
-  									<h6 class="badge badge-danger"><?= $notif ?></h6>
+  								<?php if ($notif_req > 0) { ?>
+  									<h6 class="badge badge-success"><?= $notif_req ?></h6>
+
+  								<?php } ?>
+  							</a></li>
+  						<li class="<?= $this->uri->segment('1') == 'stok-rusak' || $this->uri->segment('1') == 'stok-rusak-' ? 'active' : '' ?>"><a class="nav-link" href="<?= base_url('stok-rusak'); ?>"><i class="fas fa-unlink"></i>
+  								<span>Stok Rusak</span>
+  								<?php if ($notif_rusak > 0) { ?>
+  									<h6 class="badge badge-success"><?= $notif_rusak ?></h6>
 
   								<?php } ?>
   							</a></li>
@@ -122,6 +130,18 @@
   								<span>Pemakaian Bahan</span></a></li>
   						<li class="<?= $this->uri->segment('1') == 'request-cabang' || $this->uri->segment('1') == 'request-cabang-' ? 'active' : '' ?>"><a class="nav-link" href="<?= base_url('request-cabang'); ?>"><i class="fas fa-envelope"></i>
   								<span>Request Bahan</span></a></li>
+  						<li class="<?= $this->uri->segment('1') == 'stok-rusak' || $this->uri->segment('1') == 'stok-rusak-' ? 'active' : '' ?>"><a class="nav-link" href="<?= base_url('stok-rusak'); ?>"><i class="fas fa-unlink"></i>
+  								<span>Stok Rusak</span>
+  								<?php
+									$notif_rusak = $this->db
+										->where('status', 1)
+										->where('id_dapur', $this->session->userdata('id_dapur'))
+										->get('stok_rusak')->num_rows();
+									if ($notif_rusak > 0) { ?>
+  									<h6 class="badge badge-success"><?= $notif_rusak ?></h6>
+
+  								<?php } ?>
+  							</a></li>
 
   						<li class="menu-header">Manajemen Stok</li>
   						<li class="<?= $this->uri->segment('1') == 'stok-cabang' ? 'active' : '' ?>"><a class="nav-link" href="<?= base_url('stok-cabang') ?>"><i class="fas fa-server"></i>

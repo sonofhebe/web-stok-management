@@ -16,10 +16,10 @@
       				<div class="card-body">
       					<div class="col-lg-3">
       						<div class="form-group">
-      							<form action="<?= base_url('request') ?>" method="post" enctype="multipart/form-data">
+      							<form id="tglForm" action="<?= base_url('request') ?>" method="post" enctype="multipart/form-data">
       								<label for="tgl">Tanggal</label>
       								<input type="date" value="<?= $tgl ?>" name="tanggal" id="tgl" class="form-control" max="<?= date('Y-m-d'); ?>">
-      								<button class="btn btn-primary btn-sm" type="submit"><i class="fas fa-search"></i></button>
+      								<!-- <button class="btn btn-primary btn-sm" type="submit"><i class="fas fa-search"></i></button> -->
       							</form>
       						</div>
       					</div>
@@ -129,7 +129,7 @@
       		<div class="row">
       			<div class="col-lg-12">
       				<div class="card">
-      					<div class="card-body text-white bg-danger">
+      					<div class="card-body text-white bg-success">
       						<h6><b>Request yang belum dikirim</b></h6>
 
       						<?php foreach ($tunggu as $t) {
@@ -145,3 +145,9 @@
 
       </div>
       </div>
+
+      <script>
+      	$('#tgl').on('change', function() {
+      		$('#tglForm').submit();
+      	});
+      </script>

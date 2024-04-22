@@ -177,6 +177,15 @@ $route['request-'] = 'request/utama2';
 $route['request'] = 'request/utama';
 $route['input-request/(:any)'] = 'request/input/$1';
 
+//stok rusak
+$route['stok-rusak-'] = 'stok_rusak/index2';
+$route['stok-rusak'] = 'stok_rusak/index';
+$route['tambah-stok-rusak'] = 'stok_rusak/tambah';
+$route['batal-stok-rusak/(:any)'] = 'stok_rusak/batal/$1';
+$route['hapus-stok-rusak/(:any)'] = 'stok_rusak/hapus/$1';
+$route['konfirmasi-stok-rusak/(:any)'] = 'stok_rusak/konfirmasi/$1';
+$route['tolak-stok-rusak/(:any)'] = 'stok_rusak/tolak/$1';
+
 //Pemakaian
 $route['pemakaian'] = 'pemakaian/index';
 $route['pemakaian-'] = 'pemakaian/index2';
