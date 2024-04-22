@@ -126,7 +126,7 @@
       									<option value="" selected disabled>-- PILIH BAHAN --</option>
 
       									<?php foreach ($bahan as $p) { ?>
-      										<option value="<?= $p->id_bahan ?>"><?= $p->nama_kategori ?> : <?= $p->nama_bahan ?></option>
+      										<option value="<?= $p->id_bahan ?>"><?= $p->nama_kategori ?> : <?= $p->nama_bahan ?> (<?= $p->nama_satuan ?>)</option>
 
       									<?php } ?>
       								</select>

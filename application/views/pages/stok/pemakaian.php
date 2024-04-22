@@ -52,7 +52,7 @@
       										<td><?= $keluar->nama_bahan ?></td>
       										<td><?= $keluar->jumlah / $keluar->sc ?> <?= $keluar->nama_satuan ?></td>
       										<td><?= $keluar->sc ?></td>
-      										<td><?= $keluar->jumlah * $keluar->sc ?> <?= $keluar->nama_satuan ?></td>
+      										<td><?= ($keluar->jumlah / $keluar->sc) * $keluar->sc ?> <?= $keluar->nama_satuan ?></td>
       										<td><?= $keluar->tanggal ?></td>
       										<td>
       											<button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapus<?= $keluar->id_pemakaian ?>"><i class="fas fa-trash-alt"></i></button>

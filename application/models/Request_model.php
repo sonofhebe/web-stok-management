@@ -5,6 +5,7 @@ class request_model extends CI_Model
 	public function getbahan()
 	{
 		$this->db->join('kategori', 'kategori.id_kategori=bahan.id_kategori');
+		$this->db->join('satuan', 'satuan.id_satuan=bahan.id_satuan');
 		$this->db->order_by('bahan.id_kategori', 'ASC');
 		$this->db->order_by('nama_bahan', 'ASC');
 		return $this->db->get('bahan')->result();
